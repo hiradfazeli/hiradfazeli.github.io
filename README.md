@@ -4,7 +4,7 @@
 [LinkedIn](https://linkedin.com/in/hiradfazeli)<br/>
 [GitHub](https://github.com/hiradfazeli)<br/>
 
-![Hirad Fazeli](images/hirad-fazeli.png) 
+![Hirad Fazeli](img/hirad-fazeli.png) 
 
 **Date of Birth:** Oct 31, 1994<br/>
 **Sex:** Male<br/>
