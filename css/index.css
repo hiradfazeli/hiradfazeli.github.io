@@ -1,0 +1,124 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    border: 8px solid black;
+}
+
+/*!!!!!!!!!!!!!
+Header
+!!!!!!!!!!!!!*/
+header {
+    width: 100%;
+    border-bottom: 8px solid black;
+    text-align: center;
+}
+
+header #logo {
+    text-decoration: none;
+    color: black;
+}
+
+
+/*!!!!!!!!!!!!!
+Main
+!!!!!!!!!!!!!*/
+main {
+    width: 100%;
+    display: inline-flex;
+    flex-wrap: wrap;
+}
+
+/*left*/
+.left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-right: 4px solid black ;
+    text-align: center;
+    width: 50%;
+}
+
+.photo {
+    height: 31.2rem;
+}
+
+.about {
+    padding: 3rem 0;
+    border-top: 8px solid black;
+    width: 100%;
+}
+
+
+/*Right*/
+.right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: stretch;
+    border-left: 4px solid black ;
+    width: 50%;
+}
+
+.right h2 {
+    text-align: center;    
+}
+
+.boxA {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+}
+
+.boxB {
+    border: 1px solid black;
+    flex: 1 1;
+    
+}
+
+.projects {
+    width: 50%;
+    float: left;
+}
+
+.experience {
+    width: 50%;
+    float: right;
+}
+
+.education {
+    width: 30%;
+    float: left;
+}
+
+.social {
+    width: 40%;
+    float: left;
+}
+
+.payment {
+    width: 30%;
+    float: right;
+}
+
+.contact {
+    width: 100%;
+}
+
+
+/*!!!!!!!!!!!!!
+Footer
+!!!!!!!!!!!!!*/
+footer {
+    border-top: 8px solid black;
+    width: 100%;
+}
