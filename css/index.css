@@ -32,9 +32,8 @@ Main
 !!!!!!!!!!!!!*/
 main {
     width: 100%;
-    display: grid;
-    grid-template: 1fr / repeat(2, 1fr);
-    align-items: center;
+    display: inline-flex;
+    flex-wrap: wrap;
 }
 
 /*left*/
@@ -45,6 +44,7 @@ main {
     align-items: center;
     border-right: 4px solid black ;
     text-align: center;
+    width: 50%;
 }
 
 .photo {
@@ -60,12 +60,60 @@ main {
 
 /*Right*/
 .right {
-
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: stretch;
+    border-left: 4px solid black ;
+    width: 50%;
 }
+
+.right h2 {
+    text-align: center;    
+}
+
+.boxA {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+}
+
 .boxB {
     border: 1px solid black;
+    flex: 1 1;
+    
+}
+
+.projects {
+    width: 50%;
+    float: left;
+}
+
+.experience {
+    width: 50%;
+    float: right;
+}
+
+.education {
+    width: 30%;
+    float: left;
+}
+
+.social {
+    width: 40%;
+    float: left;
+}
+
+.payment {
+    width: 30%;
+    float: right;
+}
+
+.contact {
     width: 100%;
 }
+
 
 /*!!!!!!!!!!!!!
 Footer
