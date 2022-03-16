@@ -9,7 +9,68 @@ html {
 }
 
 body {
-    width: 100%;
-    border: 5px solid black;
+    border: 8px solid black;
 }
 
+/*!!!!!!!!!!!!!
+Header
+!!!!!!!!!!!!!*/
+header {
+    width: 100%;
+    border-bottom: 8px solid black;
+    text-align: center;
+}
+
+header #logo {
+    text-decoration: none;
+    color: black;
+}
+
+
+/*!!!!!!!!!!!!!
+Main
+!!!!!!!!!!!!!*/
+main {
+    width: 100%;
+    display: grid;
+    grid-template: 1fr / repeat(2, 1fr);
+    align-items: center;
+}
+
+/*left*/
+.left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-right: 4px solid black ;
+    text-align: center;
+}
+
+.photo {
+    height: 31.2rem;
+}
+
+.about {
+    padding: 3rem 0;
+    border-top: 8px solid black;
+    width: 100%;
+}
+
+
+/*Right*/
+.right {
+
+}
+.boxB {
+    border: 1px solid black;
+    width: 100%;
+}
+
+/*!!!!!!!!!!!!!
+Footer
+!!!!!!!!!!!!!*/
+footer {
+    border-top: 8px solid black;
+    width: 100%;
+}
