@@ -1,29 +1,165 @@
 @font-face {
-    font-family: 'Cinzel Decorative';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/cinzeldecorative/v12/daaCSScvJGqLYhG8nNt8KPPswUAPni7TTMw.woff2) format('woff2');
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-  }
+font-family: 'Montserrat';
+font-style: italic;
+font-weight: 100;
+font-display: swap;
+src: url(https://fonts.gstatic.com/s/montserrat/v23/JTUQjIg1_i6t8kCHKm459WxRyS7m.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
-  @font-face {
-    font-family: 'Cinzel Decorative';
-    font-style: normal;
-    font-weight: 700;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/cinzeldecorative/v12/daaHSScvJGqLYhG8nNt8KPPswUAPniZoadlESTE.woff2) format('woff2');
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-  }
+@font-face {
+font-family: 'Montserrat';
+font-style: italic;
+font-weight: 200;
+font-display: swap;
+src: url(https://fonts.gstatic.com/s/montserrat/v23/JTUQjIg1_i6t8kCHKm459WxRyS7m.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
-  @font-face {
-    font-family: 'Cinzel Decorative';
-    font-style: normal;
-    font-weight: 900;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/cinzeldecorative/v12/daaHSScvJGqLYhG8nNt8KPPswUAPniZQa9lESTE.woff2) format('woff2');
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-  }
+@font-face {
+font-family: 'Montserrat';
+font-style: italic;
+font-weight: 300;
+font-display: swap;
+src: url(https://fonts.gstatic.com/s/montserrat/v23/JTUQjIg1_i6t8kCHKm459WxRyS7m.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+font-family: 'Montserrat';
+font-style: italic;
+font-weight: 400;
+font-display: swap;
+src: url(https://fonts.gstatic.com/s/montserrat/v23/JTUQjIg1_i6t8kCHKm459WxRyS7m.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+font-family: 'Montserrat';
+font-style: italic;
+font-weight: 500;
+font-display: swap;
+src: url(https://fonts.gstatic.com/s/montserrat/v23/JTUQjIg1_i6t8kCHKm459WxRyS7m.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+font-family: 'Montserrat';
+font-style: italic;
+font-weight: 600;
+font-display: swap;
+src: url(https://fonts.gstatic.com/s/montserrat/v23/JTUQjIg1_i6t8kCHKm459WxRyS7m.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+font-family: 'Montserrat';
+font-style: italic;
+font-weight: 700;
+font-display: swap;
+src: url(https://fonts.gstatic.com/s/montserrat/v23/JTUQjIg1_i6t8kCHKm459WxRyS7m.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+font-family: 'Montserrat';
+font-style: italic;
+font-weight: 800;
+font-display: swap;
+src: url(https://fonts.gstatic.com/s/montserrat/v23/JTUQjIg1_i6t8kCHKm459WxRyS7m.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+font-family: 'Montserrat';
+font-style: italic;
+font-weight: 900;
+font-display: swap;
+src: url(https://fonts.gstatic.com/s/montserrat/v23/JTUQjIg1_i6t8kCHKm459WxRyS7m.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 100;
+font-display: swap;
+src: url(https://fonts.gstatic.com/s/montserrat/v23/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 200;
+font-display: swap;
+src: url(https://fonts.gstatic.com/s/montserrat/v23/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 300;
+font-display: swap;
+src: url(https://fonts.gstatic.com/s/montserrat/v23/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 400;
+font-display: swap;
+src: url(https://fonts.gstatic.com/s/montserrat/v23/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url(https://fonts.gstatic.com/s/montserrat/v23/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url(https://fonts.gstatic.com/s/montserrat/v23/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 700;
+font-display: swap;
+src: url(https://fonts.gstatic.com/s/montserrat/v23/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 800;
+font-display: swap;
+src: url(https://fonts.gstatic.com/s/montserrat/v23/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 900;
+font-display: swap;
+src: url(https://fonts.gstatic.com/s/montserrat/v23/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
+unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 
 * {
     padding: 0;
@@ -36,124 +172,136 @@ html {
 }
 
 body {
-    border: 8px solid black;
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f0f0f0;
+    color: #0f0f0f;
+    text-align: center;
 }
 
 
 /*!!!!!!!!!!!!!
 Header
 !!!!!!!!!!!!!*/
-header {
+header{
     width: 100%;
-    border-bottom: 8px solid black;
-    text-align: center;
+    border: 4px solid #0f0f0f;
+}
+
+header a {
+    text-decoration: none;
+    color: #0f0f0f;
 }
 
 #logo {
-    text-decoration: none;
-    color: black;
-    font-family: 'Cinzel Decorative';
-    font-weight: 900;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    padding: .5rem 0;
 }
 
 
 /*!!!!!!!!!!!!!
 Main
 !!!!!!!!!!!!!*/
+
+/*Left main section*/
+
 main {
-    width: 100%;
-    display: inline-flex;
+    display: flex;
     flex-wrap: wrap;
+    flex-grow: 1;
 }
 
-/*left*/
 .left {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-content: stretch;
-    border-right: 4px solid black ;
-    text-align: center;
+    float: left;
     width: 50%;
-}
-
-.about {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-content: stretch;
-    text-align: center;
-}
-
-.photo {
-    object-fit: cover;
-    object-position: 50%;
-    width: 100%;
-    height: 32rem;
-    flex-grow: 1;
-    border-bottom: 8px solid black;
-}
-
-.left h2 {
-    padding: 3rem;
-}
-
-/*Right*/
-.right {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-content: stretch;
-    border-left: 4px solid black ;
-    width: 50%;
-}
-
-.right h2 {
-    text-align: center;
-    padding-top: 6rem; 
-}
-
-.boxA {
-    width: 100%;
-    display: flex;
-    align-items: center;
     flex-wrap: wrap;
+}
+
+.itemL {
     flex-grow: 1;
+    border: 4px solid #0f0f0f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem;
 }
 
-.boxB {
-    border: 1px solid black;
-    flex: 1 1;
-    height: 100%;
-}
-
-.projects {
-    width: 50%;
-    float: left;
-}
-
-.experience {
-    width: 50%;
-    float: right;
-}
-
-.education {
-    width: 30%;
-    float: left;
-}
-
-.social {
-    width: 40%;
-    float: left;
-}
-
-.payment {
-    width: 30%;
-    float: right;
-}
-
-.contact {
+.left .about {
     width: 100%;
+}
+
+.left .photo {
+    display: flex;
+    overflow: hidden;
+    padding: 0;
+}
+
+.photo img {
+    width: 100%;
+    max-height: 25rem;
+    flex-grow: 1;
+    object-fit: cover;
+    object-position: 100% 70%;
+}
+
+
+/*Right main section*/
+.right {
+    float: right;
+    width: 50%;
+    border-left: 4px solid #0f0f0f;
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+
+.itemR {
+    flex-grow: 1;
+    border: 4px solid #0f0f0f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem;
+}
+
+
+.right .projects{
+    width: 50%;
+    float: left;
+    border-right: 4px solid #0f0f0f;
+    border-bottom: 4px solid #0f0f0f;
+}
+.right .work {
+    width: 50%;
+    float: right;
+}
+
+.right .education {
+    width: 50%;
+    float: left;
+    border-right: 4px solid #0f0f0f;
+    border-bottom: 4px solid #0f0f0f;
+}
+
+.right .social {
+    width: 50%;
+    float: right;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+}
+
+.box {
+    padding: 1rem;
+    flex-grow: 1;
+    color:#0f0f0f
+}
+
+.right .contact {
+    width: 100%;
+    float: left;
 }
 
 
@@ -161,6 +309,12 @@ main {
 Footer
 !!!!!!!!!!!!!*/
 footer {
-    border-top: 8px solid black;
-    width: 100%;
+    width:100%;
+    border: 4px solid #0f0f0f;
+    clear: both;
+}
+
+.copyright {
+    padding: 1rem 0;
+    font-weight: 500;
 }
