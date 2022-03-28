@@ -235,13 +235,12 @@ main {
     padding: 4rem;
 }
 
-.about {
+#about {
     width: 100%;
 }
 
 .photo {
     padding: 0;
-    background-color: white;
     align-items: stretch;
 }
 
@@ -255,7 +254,6 @@ main {
 
 /*Right main section*/
 .right {
-    
     display: flex;
     align-items: stretch;
     flex-wrap: wrap;
@@ -272,42 +270,95 @@ main {
     padding: 4rem;
 }
 
-
-.right .projects{
+#projects{
     width: 50%;
     float: left;
     border-right: 4px solid #0f0f0f;
     border-bottom: 4px solid #0f0f0f;
 }
-.right .work {
+#work {
     width: 50%;
     float: right;
 }
 
-.right .education {
+#education {
     width: 50%;
     float: left;
     border-right: 4px solid #0f0f0f;
     border-bottom: 4px solid #0f0f0f;
 }
 
-.right .social {
+.social {
     width: 50%;
     float: right;
     display: flex;
     flex-wrap: wrap;
+    align-items: stretch;
     padding: 0;
 }
 
-.box {
+.social .box {
     padding: 1rem;
     flex-grow: 1;
-    color:#0f0f0f
+    color:#0f0f0f;
+    display: flex;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
 }
 
-.right .contact {
+#contact {
     width: 100%;
     float: left;
+}
+
+#popup {
+    background-color: #0f0f0f;
+    opacity: 0.9;
+    width: 50%;
+    height: 100%;
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    color: #f4efde;
+    overflow-y: scroll;
+}
+
+#popup h2 {
+    font-size: 2rem;
+}
+
+.popItem {
+    display: none;
+    position: relative;
+    top: 3rem;
+    margin: 0 auto;
+    width: 80%;
+    padding: 1rem 0;
+    text-align: left;
+}
+
+.popItem p {
+    font-style: normal;
+    font-size: 1.5rem;
+    line-height: 3rem;
+}
+
+.popItem a {
+    text-decoration: none;
+    color: #f4efde;
+    font-style: normal;
+}
+
+#exit {
+    position: relative;
+    top: 2rem;
+    z-index: 2;
+    width: min-content;
+    margin: 0 auto;
 }
 
 
@@ -346,6 +397,10 @@ Media
 !!!!!!!!!!!!!*/
 @media only screen and (max-width: 768px) {
     .left, .right {
+        width: 100%;
+    }
+
+    #popup {
         width: 100%;
     }
 }

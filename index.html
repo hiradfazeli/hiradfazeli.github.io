@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>This is Hirad Fazeli - Welcome to my office</title>
+    <title>Hirad Fazeli - Web Developer | Welcome to my office</title>
     <link rel="stylesheet" href="./css/index.css" type="text/css" />
     <script src="https://kit.fontawesome.com/faf21cc22b.js" crossorigin="anonymous" async></script>
-    <script src="./javascript/script.js" defer></script>
+    
 </head>
 <body>
     <header>
@@ -16,22 +16,22 @@
 
     <main>
         <section class="left">
-            <section class="item itemL about">
-                <h2 class="">Who am I?</h2>
+            <section id="about" class="item itemL container">
+                <h2>Who Am I?</h2>
             </section>
             <figure class="itemL photo">
                 <img src="./img/ukraine.png" alt="Hirad Fazeli" />
             </figure>
         </section>
         <section class="right">
-            <section class="item itemR projects">
+            <section id="projects" class="item itemR container">
                 <h2>Projects</h2>
             </section>
-            <section class="item itemR work">
+            <section id="work" class="item itemR container">
                 <h2>Work Experience</h2>
             </section>
-            <section class="item itemR education">
-                <h2>Education</h2>
+            <section id="education" class="item itemR container">
+                <h2>Education & Certificates</h2>
             </section>
             <section class="itemR social">
                 <a class="item box" href="https://www.linkedin.com/in/hiradfazeli/" target="_blank">
@@ -53,14 +53,98 @@
                     <i class="fa-solid fa-envelope fa-4x"></i>
                 </a>
             </section>
-            <section class="item itemR contact">
+            <section id="contact" class="item itemR container">
                 <h2>Contact Me</h2>
+            </section>
+            <section id="popup">
+                <div id="exit">
+                    <i class="fa-solid fa-xmark fa-4x"></i>
+                </div>
+                <article id="aboutPage" class="popItem">
+                    <h2>Hirad Fazeli</h2>
+                    <br>
+                    <h3>My Personal Info</h3>
+                    <p>
+                        I'm a web developer with IT background who is in business field too.
+                        Below you can get familiar with me:
+                    </p>
+                    <ul>
+                        <li>Date of Birth: Oct 31, 1994</li>
+                        <li>Sex: Male</li>
+                        <li>Marital Status: Single</li>
+                        <li>Country of Origin: Iran</li>
+                        <li>Country of residence: Georgia</li>
+                    </ul>
+                    <h3>Language I know</h3>
+                    <ul>
+                        <li>Farsi</li>
+                        <li>English</li>
+                    </ul>
+                    <h3>Skills I Have</h3>
+                    <ul>
+                        <li>Web Design & Development</li>
+                        <li>Business</li>
+                        <li>Computer Networking</li>
+                    </ul>
+                    <h3>I'm Interested in</h3>
+                    <ul>
+                        <li>The Great Steve Jobs</li>
+                        <li>Blockchain</li>
+                        <li>Social networking</li>
+                        <li>Books</li>
+                        <li>Comic Book Movies</li>
+                        <li>Learning</li>
+                    </ul>
+                </article>
+                <article id="projectsPage" class="popItem">
+                    <h2>projects</h2>
+                </article>
+                <article id="workPage" class="popItem">
+                    <h2>work</h2>
+                    <br>
+                    <ul>
+                        <li>Parsonline / HiWeb Internet Service Provider (ISP)</li>
+                        <li>AfraRasa Internet Service Provider (ISP)</li>
+                        <li>Shabakeh Rasaneh Tehran Internet Service Provider (ISP)</li>
+                        <li>Kavosh - Parsonilne Contractor</li>
+                    </ul>
+                </article>
+                <article id="educationPage" class="popItem">
+                    <h2>education & Certificates</h2>
+                    <br>
+                    <ul>
+                        <li>JavaScript</li>
+                        <li>Master of Business Administration (MBA)</li>
+                        <li>C# Programming Language</li>
+                        <li>Cisco Certified Network Professional (CCNP) Route 300-101</li>
+                        <li>Microsoft Certified Solutions Expert (MCSE) 2012</li>
+                        <li>Kerio Control V9.0 Bootcamp</li>
+                        <li>Cisco Certified Network Associate (CCNA) Routing and Switching 640-802</li>
+                        <li>CompTIA Network+</li>
+                    </ul>
+                </article>
+                <article id="contactPage" class="popItem">
+                    <header>
+                        <h2>Contact Me</h2>
+                    </header>
+                    <br>
+                    <address>
+                        <p>Aghmashenebli 4 <br>
+                        Gardabani, Kvemo Kartli, Georgia</p>
+                        <p>ZIP Code: 1300</p>
+                        <br>
+                        <p>+995 579245036</p>
+                        <a href="mailto: hirad.fazeli94@gmail.com">hirad.fazeli94@gmail.com</a>
+                    </address>
+                </article>
             </section>
         </section>
     </main>
 
     <footer>
-        <p class="copyright">&copy;Hirad Fazeli. All rights not reserved!</p>
+        <p class="copyright">&copy;2022 Hirad Fazeli. All rights not reserved!</p>
     </footer>
+
+    <script src="./javascript/script.js" ></script>
 </body>
 </html>
