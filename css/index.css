@@ -331,6 +331,10 @@ main {
     font-size: 2rem;
 }
 
+#popup h3 {
+    font-size: 1.5rem;
+}
+
 .popItem {
     display: none;
     position: relative;
@@ -339,6 +343,10 @@ main {
     width: 80%;
     padding: 1rem 0;
     text-align: left;
+}
+
+.popItem h3 {
+    font-style: normal;
 }
 
 .popItem p {
@@ -351,6 +359,7 @@ main {
     text-decoration: none;
     color: #f4efde;
     font-style: normal;
+    line-height: 3rem;
 }
 
 #exit {
