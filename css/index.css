@@ -362,6 +362,27 @@ main {
     line-height: 3rem;
 }
 
+.popItem .list {
+    font-size: 1.5rem;
+    line-height: 3rem;
+    list-style: none;
+}
+
+.list li {
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+.sublist li {
+    margin-bottom: 0;
+    font-weight: 400;
+}
+
+.popItem .sublist {
+    list-style: none;
+    margin-left: 2rem;
+}
+
 #exit {
     position: relative;
     top: 2rem;
