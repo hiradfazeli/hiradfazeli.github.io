@@ -114,14 +114,26 @@ contact.onclick = function () {
 
 
 //exit button event handler
+/*
 function exitMouseDown() {
   exit.innerHTML = '<i class="fa-solid fa-xmark fa-3x"></i>';
 }
+*/
 
 function exitMouseUp() {
-  exit.innerHTML = '<i class="fa-solid fa-xmark fa-4x"></i>';
+  //exit.innerHTML = '<i class="fa-solid fa-xmark fa-4x"></i>';
   popup.style.display = 'none';
 }
 
-exit.addEventListener ('mousedown', exitMouseDown);
-exit.addEventListener ('mouseup', exitMouseUp);
+function exitOver() {
+  exit.style.border = '4px solid white';
+}
+
+function exitOut() {
+  exit.style.border = '';
+}
+
+
+//exit.addEventListener ('mousedown', exitMouseDown);
+//exit.addEventListener ('mouseup', exitMouseUp);
+exit.addEventListener ('click', exitMouseUp);
