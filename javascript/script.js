@@ -114,14 +114,8 @@ contact.onclick = function () {
 
 
 //exit button event handler
-function exitMouseDown() {
-  exit.innerHTML = '<i class="fa-solid fa-xmark fa-3x"></i>';
-}
-
-function exitMouseUp() {
-  exit.innerHTML = '<i class="fa-solid fa-xmark fa-4x"></i>';
+function exitClick() {
   popup.style.display = 'none';
 }
 
-exit.addEventListener ('mousedown', exitMouseDown);
-exit.addEventListener ('mouseup', exitMouseUp);
+exit.addEventListener ('click', exitClick);
