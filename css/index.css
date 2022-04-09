@@ -325,14 +325,7 @@ main {
     z-index: 1;
     color: #f4efde;
     overflow-y: scroll;
-}
-
-#popup h2 {
-    font-size: 2rem;
-}
-
-#popup h3 {
-    font-size: 1.5rem;
+    font-size: 20px;
 }
 
 .popItem {
@@ -351,7 +344,6 @@ main {
 
 .popItem p {
     font-style: normal;
-    font-size: 1.5rem;
     line-height: 3rem;
 }
 
@@ -363,24 +355,23 @@ main {
 }
 
 .popItem .list {
-    font-size: 1.5rem;
     line-height: 3rem;
     list-style: none;
 }
 
 .list li {
     margin-bottom: 2rem;
-    font-weight: 600;
+
 }
 
 .sublist li {
     margin-bottom: 0;
-    font-weight: 400;
+
 }
 
-.popItem .sublist {
+li ul {
     list-style: none;
-    margin-left: 2rem;
+    margin-left: 2.5rem;
 }
 
 #exit {
