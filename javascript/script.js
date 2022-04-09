@@ -42,7 +42,11 @@ about.onclick = function () {
     aboutPage.style.display = 'block';
 };
 
+
 projects.onclick = function () {
+  window.open('https://github.com/hiradfazeli?tab=repositories', '_blank')
+
+  /*
   popup.style.display = 'block';
   exit.style.display = 'block';
 
@@ -56,7 +60,9 @@ projects.onclick = function () {
     contactPage.style.display = 'none';
   }
   projectsPage.style.display = 'block';
+  */
 };
+
 
 work.onclick = function () {
   popup.style.display = 'block';

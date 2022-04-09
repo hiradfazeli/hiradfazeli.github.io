@@ -276,6 +276,7 @@ main {
     border-right: 4px solid #0f0f0f;
     border-bottom: 4px solid #0f0f0f;
 }
+
 #work {
     width: 50%;
     float: right;
@@ -297,7 +298,7 @@ main {
     padding: 0;
 }
 
-.social .box {
+.box {
     padding: 1rem;
     flex-grow: 1;
     color:#0f0f0f;
@@ -405,7 +406,7 @@ footer {
 /*!!!!!!!!!!!!!
 Effects
 !!!!!!!!!!!!!*/
-.item:hover {
+.item:hover{
     transition: background-color 0.4s ease, color 0.4s ease;
     background-color: #0f0f0f;
     color: #f4efde;
