@@ -1,0 +1,27 @@
+{
+  "name": "hiradfazeli-github-io",
+  "type": "module",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Personal site of Hirad Fazeli — founder & engineer.",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "og": "node scripts/generate-og.mjs"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.6.0",
+    "@fontsource-variable/inter": "^5.2.5",
+    "@fontsource-variable/jetbrains-mono": "^5.2.5",
+    "@fontsource/libre-caslon-display": "^5.2.5",
+    "astro": "^5.14.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "sharp": "^0.34.2",
+    "typescript": "^5.9.2"
+  }
+}

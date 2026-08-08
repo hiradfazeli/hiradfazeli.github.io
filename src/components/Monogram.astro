@@ -1,0 +1,71 @@
+---
+export interface Props {
+  size?: number;
+  /** When true, the strokes draw themselves in on load (JS Art). */
+  animate?: boolean;
+  class?: string;
+}
+
+const { size = 40, animate = false, class: className = '' } = Astro.props;
+---
+
+{/*
+  An engraved HF monogram inside a ruled roundel — the wax-seal device.
+  Decorative: the accessible name for the logo lives on the link that wraps it.
+*/}
+<svg
+  class:list={['monogram', className, animate && 'monogram--draw']}
+  width={size}
+  height={size}
+  viewBox="0 0 100 100"
+  fill="none"
+  aria-hidden="true"
+  focusable="false"
+>
+  <circle cx="50" cy="50" r="47" stroke="currentColor" stroke-width="1" opacity="0.45" />
+  <circle cx="50" cy="50" r="42" stroke="currentColor" stroke-width="0.5" opacity="0.3" />
+  {/* H */}
+  <path d="M30 33 V67 M30 50 H50 M50 33 V67" stroke="currentColor" stroke-width="3.2" stroke-linecap="square" />
+  {/* F, interlocking */}
+  <path d="M58 67 V33 H74 M58 49 H70" stroke="currentColor" stroke-width="3.2" stroke-linecap="square" />
+</svg>
+
+<style>
+  .monogram {
+    color: var(--brass);
+    overflow: visible;
+  }
+
+  /* The seal drawing itself: stroke-dashoffset unwinding on load. */
+  :global(.js) .monogram--draw circle,
+  :global(.js) .monogram--draw path {
+    stroke-dasharray: 320;
+    stroke-dashoffset: 320;
+    animation: monogram-draw 1.6s var(--ease) forwards;
+  }
+
+  :global(.js) .monogram--draw circle:nth-child(2) {
+    animation-delay: 0.12s;
+  }
+  :global(.js) .monogram--draw path:nth-of-type(1) {
+    animation-delay: 0.35s;
+  }
+  :global(.js) .monogram--draw path:nth-of-type(2) {
+    animation-delay: 0.5s;
+  }
+
+  @keyframes monogram-draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(.js) .monogram--draw circle,
+    :global(.js) .monogram--draw path {
+      stroke-dasharray: none;
+      stroke-dashoffset: 0;
+      animation: none;
+    }
+  }
+</style>

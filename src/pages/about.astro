@@ -1,0 +1,295 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import portrait from '../assets/hiradfazeli.png';
+import { INTERESTS, LANGUAGES, PERSON, SITE } from '../data/profile';
+import { breadcrumbNode, organizationNode, personNode } from '../lib/schema';
+
+// The one canonical Person record lives here, on its own ProfilePage. Every other
+// page references it by @id rather than repeating it.
+const schema = [
+  {
+    '@type': 'ProfilePage',
+    '@id': 'https://hiradfazeli.github.io/about/#profilepage',
+    url: 'https://hiradfazeli.github.io/about/',
+    name: 'About Hirad Fazeli',
+    mainEntity: { '@id': SITE.personId },
+  },
+  personNode(new URL(portrait.src, SITE.url).href),
+  organizationNode,
+  breadcrumbNode([
+    { name: 'Home', url: '/' },
+    { name: 'About', url: '/about/' },
+  ]),
+];
+---
+
+<BaseLayout
+  title="About Hirad Fazeli — Founder, Engineer, Azure Administrator"
+  description="Hirad Fazeli: born in Tehran, six years in network operations, now founder and sole developer of ZEEberton, building from Yerevan, Armenia."
+  type="profile"
+  schema={schema}
+>
+  <section class="section wrap">
+    <p class="label page__eyebrow">About</p>
+    <h1 class="page__title">{PERSON.name}</h1>
+    <p class="lede page__lede">{PERSON.summary}</p>
+  </section>
+
+  <section class="wrap bio" aria-labelledby="story">
+    <div class="bio__portrait reveal">
+      <Image
+        src={portrait}
+        alt={PERSON.photo.alt}
+        widths={[320, 460, 640]}
+        sizes="(min-width: 56rem) 20rem, (min-width: 34rem) 40vw, 80vw"
+        loading="eager"
+        class="portrait"
+      />
+
+      <dl class="vitals">
+        <div>
+          <dt class="label">Born</dt>
+          <dd>{PERSON.birth.place} &middot; {PERSON.birth.display}</dd>
+        </div>
+        <div>
+          <dt class="label">Based in</dt>
+          <dd>{PERSON.location.display}</dd>
+        </div>
+        <div>
+          <dt class="label">Languages</dt>
+          <dd>
+            {LANGUAGES.map((l) => `${l.name} (${l.level})`).join(' · ')}
+          </dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="bio__text prose stack reveal" data-delay="1">
+      <h2 id="story" class="bio__heading">How I got here</h2>
+
+      <p>
+        I was born in Tehran in 1994 and started out with my hands in the physical layer
+        — installing ADSL lines in people's homes in 2015. That is an unglamorous way to
+        learn networking and an extremely effective one: you find out quickly that a
+        diagram and a wall socket are different things.
+      </p>
+
+      <p>
+        From there I moved up the stack. Call-centre support, then network operations
+        centres at AfraRasa and Parsonline, monitoring and troubleshooting large-scale
+        fixed infrastructure across multiple cities, managing AAA servers, running change
+        management on systems that thousands of people needed to just work. Somewhere in
+        the middle of that I recorded 350 minutes of Wireshark training and a hands-on
+        CCNA course, because explaining a thing is how I find out whether I actually
+        understand it.
+      </p>
+
+      <p>
+        In 2021 I left Iran for Georgia. Relocating mid-career means starting again, and
+        for a couple of years the work was whatever was in front of me — a rebranding
+        project, translation, then almost three years as a live game presenter at
+        Evolution in Tbilisi, on camera, in English, where a mistake is visible to
+        everyone instantly. I do not list that to pad a CV. Working under that kind of
+        real-time scrutiny changes how you handle pressure.
+      </p>
+
+      <p>
+        Underneath it I kept studying. I finished the Codecademy Front-End Engineer path
+        in 2022, and in 2024 passed AZ-104 to become a Microsoft Certified Azure
+        Administrator. The two halves — infrastructure I already knew, and software I had
+        deliberately taught myself — finally had somewhere to meet.
+      </p>
+
+      <p>
+        That somewhere is <a class="u" href="/work/zeeberton/">ZEEberton</a>. Since May
+        2026 I have been building a map-first social network for pet owners entirely on
+        my own — the product, the app, everything running behind it, the store
+        listings, and the conversations with vets and groomers who might put a pin on
+        the map. I run it from Yerevan.
+      </p>
+
+      <p>
+        The through-line, if there is one: I like systems that have to stay up, and I
+        would rather understand a thing end to end than own a comfortable slice of it.
+      </p>
+    </div>
+  </section>
+
+  <section class="section wrap" aria-labelledby="elsewhere">
+    <div class="section-head">
+      <h2 id="elsewhere">Elsewhere</h2>
+      <p class="label">Verify me</p>
+    </div>
+
+    <ul class="links list-plain">
+      {
+        PERSON.links.map((link, i) => (
+          <li class="links__item reveal" data-delay={Math.min(i, 3) || undefined}>
+            <a class="links__a" href={link.url} rel="me noopener" target="_blank">
+              <span class="links__label">{link.label}</span>
+              <span class="links__handle mono">{link.handle}</span>
+              <span class="links__arrow" aria-hidden="true">&nearr;</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="section wrap" aria-labelledby="interests">
+    <div class="section-head">
+      <h2 id="interests">Away from the keyboard</h2>
+      <p class="label">Interests</p>
+    </div>
+    <ul class="interests list-plain">
+      {INTERESTS.map((item) => <li class="chip mono">{item}</li>)}
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  .page__eyebrow {
+    margin-bottom: 1.25rem;
+  }
+
+  .page__title {
+    font-size: var(--step-4);
+  }
+
+  .page__lede {
+    margin-top: 1.5rem;
+    max-width: 46ch;
+  }
+
+  .bio {
+    display: grid;
+    gap: clamp(2rem, 1.5rem + 4vw, 4rem);
+    align-items: start;
+  }
+
+  @media (min-width: 56rem) {
+    .bio {
+      grid-template-columns: 20rem 1fr;
+    }
+
+    .bio__portrait {
+      position: sticky;
+      top: 2rem;
+    }
+  }
+
+  .portrait {
+    inline-size: 100%;
+    max-inline-size: 20rem;
+    block-size: auto;
+    border: 1px solid var(--rule);
+    filter: grayscale(1) contrast(1.05);
+    transition: filter 0.6s var(--ease);
+  }
+
+  .portrait:hover {
+    filter: grayscale(0) contrast(1);
+  }
+
+  .vitals {
+    margin-top: 1.75rem;
+    display: grid;
+    gap: 1.1rem;
+    max-inline-size: 20rem;
+  }
+
+  .vitals dt {
+    margin-bottom: 0.35rem;
+  }
+
+  .vitals dd {
+    margin: 0;
+    font-size: var(--step--1);
+    color: var(--muted);
+  }
+
+  .bio__heading {
+    font-size: var(--step-2);
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 0.5rem;
+  }
+
+  .bio__text {
+    max-width: 42ch;
+  }
+
+  @media (min-width: 34rem) {
+    .bio__text {
+      max-width: 58ch;
+    }
+  }
+
+  /* -------------------------------------------------------------------- links */
+  .links {
+    display: grid;
+  }
+
+  .links__a {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: baseline;
+    gap: 0.5rem 1rem;
+    padding-block: 1.1rem;
+    border-top: 1px solid var(--rule);
+    text-decoration: none;
+    transition: color 0.3s var(--ease);
+  }
+
+  .links__item:last-child .links__a {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .links__a:hover,
+  .links__a:focus-visible {
+    color: var(--brass);
+  }
+
+  .links__label {
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+  }
+
+  .links__arrow {
+    color: var(--brass);
+  }
+
+  @media (max-width: 30rem) {
+    .links__a {
+      grid-template-columns: 1fr auto;
+    }
+
+    .links__handle {
+      grid-column: 1 / -1;
+    }
+  }
+
+  /* ---------------------------------------------------------------- interests */
+  .interests {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .chip {
+    border: 1px solid var(--rule);
+    padding: 0.35rem 0.7rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .portrait,
+    .links__a {
+      transition: none;
+    }
+  }
+</style>

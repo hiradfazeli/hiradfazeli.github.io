@@ -1,0 +1,375 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import {
+  CERTIFICATIONS,
+  EDUCATION,
+  EXPERIENCE,
+  LANGUAGES,
+  PERSON,
+  SKILLS,
+} from '../data/profile';
+import { breadcrumbNode, personRef } from '../lib/schema';
+
+const schema = [
+  breadcrumbNode([
+    { name: 'Home', url: '/' },
+    { name: 'CV', url: '/cv/' },
+  ]),
+  {
+    '@type': 'WebPage',
+    '@id': 'https://hiradfazeli.github.io/cv/#webpage',
+    url: 'https://hiradfazeli.github.io/cv/',
+    name: 'Curriculum Vitae — Hirad Fazeli',
+    description:
+      'Full professional CV of Hirad Fazeli: founder and developer of ZEEberton, Microsoft Certified Azure Administrator, six years in network operations.',
+    about: personRef,
+  },
+];
+---
+
+<BaseLayout
+  title="CV — Hirad Fazeli | Azure Administrator & Founder"
+  description="Full CV of Hirad Fazeli — founder and developer of ZEEberton, Microsoft Certified Azure Administrator (AZ-104), 6+ years in network operations."
+  schema={schema}
+>
+  <section class="section wrap">
+    <p class="label page__eyebrow">Curriculum Vitae</p>
+    <h1 class="page__title">{PERSON.name}</h1>
+    <p class="cv__role">{PERSON.jobTitle} &middot; Microsoft Certified Azure Administrator</p>
+
+    <ul class="cv__contact list-plain print-url">
+      <li><a class="u" href={`mailto:${PERSON.email}`}>{PERSON.email}</a></li>
+      <li class="mono">{PERSON.location.display}</li>
+      {
+        PERSON.links.map((l) => (
+          <li>
+            <a class="u" href={l.url} target="_blank" rel="me noopener">
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class="cv__print no-print mono">
+      Tip: press <kbd>Ctrl</kbd>&nbsp;/&nbsp;<kbd>&#8984;</kbd> + <kbd>P</kbd> to save this
+      page as a PDF — it is formatted for print.
+    </p>
+  </section>
+
+  {/* ------------------------------------------------------------------ summary */}
+  <section class="section wrap cv-group" aria-labelledby="summary">
+    <div class="section-head">
+      <h2 id="summary">Profile</h2>
+    </div>
+    <p class="prose">{PERSON.summary}</p>
+  </section>
+
+  {/* --------------------------------------------------------------- experience */}
+  <section class="section wrap" aria-labelledby="experience">
+    <div class="section-head">
+      <h2 id="experience">Experience</h2>
+      <p class="label">{EXPERIENCE.length} roles</p>
+    </div>
+
+    {
+      EXPERIENCE.map((role) => (
+        <article class="cv-entry reveal">
+          <div class="cv-entry__when">
+            <p class="mono">
+              <time datetime={role.startISO}>{role.start}</time>
+              {' — '}
+              {role.endISO ? <time datetime={role.endISO}>{role.end}</time> : role.end}
+            </p>
+            {role.current && <p class="cv-entry__now mono">Current</p>}
+          </div>
+
+          <div class="cv-entry__what">
+            <h3 class="cv-entry__title">{role.title}</h3>
+            {role.org && <p class="cv-entry__org">{role.org}</p>}
+            {role.location && <p class="cv-entry__loc mono">{role.location}</p>}
+            <ul class="cv-entry__points">
+              {role.points.map((p) => (
+                <li>{p}</li>
+              ))}
+            </ul>
+          </div>
+        </article>
+      ))
+    }
+  </section>
+
+  {/* ------------------------------------------------------------------- skills */}
+  <section class="section wrap" aria-labelledby="skills">
+    <div class="section-head">
+      <h2 id="skills">Technical skills</h2>
+    </div>
+
+    <div class="cv-skills">
+      {
+        SKILLS.map((group) => (
+          <div class="cv-group reveal">
+            <h3 class="cv-skills__title">{group.group}</h3>
+            <ul class="list-plain cv-skills__list">
+              {group.items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  {/* ----------------------------------------------------------- certifications */}
+  <section class="section wrap" aria-labelledby="certs">
+    <div class="section-head">
+      <h2 id="certs">Certifications</h2>
+      <p class="label">{CERTIFICATIONS.length} total</p>
+    </div>
+
+    <ul class="certs list-plain print-url">
+      {
+        CERTIFICATIONS.map((cert) => (
+          <li class:list={['cert', 'cv-entry', cert.featured && 'cert--featured', 'reveal']}>
+            <div class="cert__when mono">
+              <time datetime={cert.earnedISO}>{cert.earned}</time>
+              {cert.expires && (
+                <span class="cert__expiry">
+                  {' '}valid to <time datetime={cert.expiresISO}>{cert.expires}</time>
+                </span>
+              )}
+            </div>
+            <div>
+              <h3 class="cert__name">
+                {cert.url ? (
+                  <a class="u" href={cert.url} target="_blank" rel="noopener">
+                    {cert.name}
+                  </a>
+                ) : (
+                  cert.name
+                )}
+              </h3>
+              <p class="cert__issuer">
+                {cert.issuer}
+                {cert.identifier && <span class="mono"> &middot; {cert.identifier}</span>}
+              </p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  {/* ------------------------------------------------------- education/languages */}
+  <section class="section wrap" aria-labelledby="education">
+    <div class="section-head">
+      <h2 id="education">Education &amp; languages</h2>
+    </div>
+
+    <div class="cv-two">
+      <div class="cv-group reveal">
+        {
+          EDUCATION.map((e) => (
+            <div class="edu">
+              <h3 class="edu__degree">{e.degree}</h3>
+              <p class="edu__school">{e.school}</p>
+              <p class="mono">
+                {e.location} &middot; graduated{' '}
+                <time datetime={e.graduatedISO}>{e.graduated}</time>
+              </p>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="cv-group reveal" data-delay="1">
+        <ul class="list-plain langs">
+          {
+            LANGUAGES.map((l) => (
+              <li class="lang">
+                <span class="lang__name">{l.name}</span>
+                <span class="lang__level mono">{l.level}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page__eyebrow {
+    margin-bottom: 1.25rem;
+  }
+
+  .page__title {
+    font-size: var(--step-4);
+  }
+
+  .cv__role {
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    color: var(--brass);
+    margin-top: 0.5rem;
+  }
+
+  .cv__contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.25rem;
+    margin-top: 1.5rem;
+    font-size: var(--step--1);
+    color: var(--muted);
+  }
+
+  .cv__print {
+    margin-top: 1.75rem;
+    color: var(--muted);
+  }
+
+  kbd {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    border: 1px solid var(--rule);
+    padding: 0.05em 0.35em;
+  }
+
+  /* ----------------------------------------------------------------- entries */
+  .cv-entry {
+    display: grid;
+    grid-template-columns: 12rem 1fr;
+    gap: clamp(0.75rem, 0.5rem + 2vw, 2.5rem);
+    padding-block: clamp(1.25rem, 1rem + 1.5vw, 2rem);
+    border-top: 1px solid var(--rule);
+  }
+
+  .cv-entry__when p {
+    color: var(--muted);
+  }
+
+  .cv-entry__now {
+    color: var(--brass);
+    margin-top: 0.3rem;
+  }
+
+  .cv-entry__title {
+    font-size: var(--step-1);
+  }
+
+  .cv-entry__org {
+    color: var(--brass);
+    margin-top: 0.15rem;
+  }
+
+  .cv-entry__loc {
+    margin-top: 0.15rem;
+  }
+
+  .cv-entry__points {
+    margin: 0.85rem 0 0;
+    padding-left: 1.1rem;
+    color: var(--muted);
+    max-width: var(--measure);
+  }
+
+  .cv-entry__points li {
+    margin-bottom: 0.4rem;
+  }
+
+  .cv-entry__points li::marker {
+    color: var(--brass);
+  }
+
+  /* ------------------------------------------------------------------ skills */
+  .cv-skills {
+    display: grid;
+    gap: clamp(2rem, 1rem + 4vw, 3.5rem);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  }
+
+  .cv-skills__title {
+    font-size: var(--step-1);
+    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .cv-skills__list {
+    display: grid;
+    gap: 0.45rem;
+    color: var(--muted);
+    font-size: var(--step--1);
+  }
+
+  /* ------------------------------------------------------------------- certs */
+  .cert__when {
+    color: var(--muted);
+  }
+
+  .cert__expiry {
+    color: var(--brass);
+  }
+
+  .cert__name {
+    font-size: var(--step-1);
+  }
+
+  .cert__issuer {
+    color: var(--muted);
+    font-size: var(--step--1);
+    margin-top: 0.25rem;
+  }
+
+  .cert--featured .cert__name {
+    color: var(--brass);
+  }
+
+  /* ------------------------------------------------------- education & langs */
+  .cv-two {
+    display: grid;
+    gap: clamp(2rem, 1rem + 4vw, 3.5rem);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  }
+
+  .edu__degree {
+    font-size: var(--step-1);
+  }
+
+  .edu__school {
+    color: var(--brass);
+    margin-top: 0.2rem;
+  }
+
+  .langs {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .lang {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .lang__name {
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+  }
+
+  .lang__level {
+    color: var(--muted);
+  }
+
+  /* Stack the two-column entry layout on narrow screens. */
+  @media (max-width: 40rem) {
+    .cv-entry {
+      grid-template-columns: 1fr;
+      gap: 0.45rem;
+    }
+  }
+</style>

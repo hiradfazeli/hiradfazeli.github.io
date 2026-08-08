@@ -1,0 +1,78 @@
+---
+import '@fontsource/libre-caslon-display/400.css';
+import '@fontsource-variable/inter';
+import '@fontsource-variable/jetbrains-mono';
+import '../styles/global.css';
+
+import Seo from '../components/Seo.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  type?: 'website' | 'article' | 'profile';
+  noindex?: boolean;
+  schema?: unknown[];
+}
+
+const { title, description, image, type, noindex, schema } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <Seo
+      title={title}
+      description={description}
+      image={image}
+      type={type}
+      noindex={noindex}
+      schema={schema}
+    />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#0e100d" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f6f2e9" media="(prefers-color-scheme: light)" />
+
+    {/*
+      Runs before first paint: applies the stored theme so there is no flash of
+      the wrong palette, and marks the document as JS-capable. Everything in the
+      JS Art layer keys off `.js`, so with scripting disabled the page simply
+      renders fully visible and static instead of hiding content it can never
+      reveal.
+    */}
+    <script is:inline>
+      (function () {
+        var d = document.documentElement;
+        d.classList.add('js');
+        try {
+          var t = localStorage.getItem('theme');
+          if (t === 'light' || t === 'dark') d.setAttribute('data-theme', t);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+
+    <script>
+      import { initArt } from '../scripts/art';
+      initArt();
+    </script>
+  </body>
+</html>

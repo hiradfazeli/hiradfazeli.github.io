@@ -1,0 +1,21 @@
+{
+  "name": "Hirad Fazeli — Founder & Engineer",
+  "short_name": "Hirad Fazeli",
+  "description": "Founder and developer of ZEEberton. Microsoft Certified Azure Administrator.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#0e100d",
+  "theme_color": "#0e100d",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

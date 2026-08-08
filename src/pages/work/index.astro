@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import WorkCard from '../../components/WorkCard.astro';
+import { PROJECTS } from '../../data/profile';
+import { breadcrumbNode, personRef } from '../../lib/schema';
+
+const schema = [
+  breadcrumbNode([
+    { name: 'Home', url: '/' },
+    { name: 'Work', url: '/work/' },
+  ]),
+  {
+    '@type': 'CollectionPage',
+    '@id': 'https://hiradfazeli.github.io/work/#webpage',
+    url: 'https://hiradfazeli.github.io/work/',
+    name: 'Work — Hirad Fazeli',
+    description:
+      'Projects built by Hirad Fazeli: ZEEberton, network engineering video courses, and brand work.',
+    about: personRef,
+    hasPart: PROJECTS.map((p) => ({
+      '@type': 'CreativeWork',
+      name: p.name,
+      description: p.blurb,
+      url: p.caseStudy
+        ? `https://hiradfazeli.github.io${p.caseStudy}`
+        : p.href ?? 'https://hiradfazeli.github.io/work/',
+    })),
+  },
+];
+---
+
+<BaseLayout
+  title="Work — Projects by Hirad Fazeli"
+  description="Things Hirad Fazeli has built: ZEEberton, a live map for pet owners; 350 minutes of Wireshark training; a hands-on CCNA course; and a brand rebuild."
+  schema={schema}
+>
+  <section class="section wrap">
+    <p class="label page__eyebrow">Work</p>
+    <h1 class="page__title">Things I have built</h1>
+    <p class="lede page__lede">
+      A product I run solo, two training courses that are still online, and a rebrand
+      delivered across a move between countries. Four entries, all real.
+    </p>
+  </section>
+
+  <section class="wrap" aria-label="Project list">
+    {PROJECTS.map((project, i) => (
+      <WorkCard project={project} as="h2" delay={Math.min(i, 3) as 0 | 1 | 2 | 3} />
+    ))}
+  </section>
+</BaseLayout>
+
+<style>
+  .page__eyebrow {
+    margin-bottom: 1.25rem;
+  }
+
+  .page__title {
+    font-size: var(--step-4);
+  }
+
+  .page__lede {
+    margin-top: 1.5rem;
+  }
+</style>

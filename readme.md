@@ -1,125 +1,85 @@
-# Hirad Fazeli
+# hiradfazeli.github.io
 
-**Microsoft Certified Azure Administrator | Network & Cloud Engineer**
+Personal site of **Hirad Fazeli** — founder & engineer, building [ZEEberton](https://zeeberton.com).
 
-**Born in** Tehran, Iran on Oct 31, 1994  
-**Currently residing in** Rustavi, Georgia 
+Live at **<https://hiradfazeli.github.io>**.
 
-## Contact Info 
-**Phone:** [+995 591 100 920](tel:+995591100920)  
-**Email:** [hirad.fazeli94@gmail.com](mailto:hirad.fazeli94@gmail.com)  
-[LinkedIn](https://linkedin.com/in/hiradfazeli)  
-[Microsoft Learn Transcript](https://learn.microsoft.com/en-us/users/hiradfazeli/transcript/735m6h854zgmx6e)
+---
 
-## Professional Summary
-Network professional with 6+ years of hands-on experience in network operations, monitoring, troubleshooting, and infrastructure management. Microsoft Certified Azure Administrator Associate with deep expertise in Entra ID, Azure virtual networking, compute, storage, and monitoring. Proven ability to configure, secure, and maintain complex environments — now fully focused on cloud computing and Microsoft Azure. Strong background in Cisco networking, Windows Server, and remote desktop services. Seeking Azure Administrator / Cloud Support / Network Engineer roles.
+## Stack
 
-## Technical Skills
-**Azure Cloud**  
-• Entra ID (Azure AD) – identities & governance  
-• Storage (Blobs, Files, Queues, Tables, data migration)  
-• Compute (Virtual Machines, App Services, Containers)  
-• Virtual Networking (NSGs, Public/Private DNS, Load Balancers, IP subnetting)  
-• Monitoring & Backup (Azure Monitor, Log Analytics, Azure Backup)  
-• Microsoft Remote Desktop Services – app virtualization & VDI  
+| | |
+|---|---|
+| Framework | [Astro 5](https://astro.build) — static output, zero JS by default |
+| Styling | Hand-written CSS with custom properties. No framework. |
+| Fonts | Self-hosted via Fontsource (Libre Caslon Display, Inter, JetBrains Mono) |
+| Hosting | GitHub Pages, deployed by GitHub Actions |
+| Backend | None. Everything is prerendered at build time. |
 
-**Infrastructure & Networking**  
-• Windows Server Administration (Active Directory, DNS, DHCP, File Services)  
-• TCP/IP, Cisco routing & switching (CCNA/CCNP level)  
-• Network monitoring tools – Cacti, PRTG, SolarWinds  
-• LAN/WAN support, AAA servers, change management  
+No third-party runtime requests: no CDN fonts, no analytics, no trackers.
 
-## Professional Experience
+## Running it
 
-**PA Attendant**  
-Hotel and Preference Hualing Tbilisi, Tbilisi, Georgia  
-*March 2026 – Present*  
-• Delivered high-pressure customer service and real-time problem resolution in an international environment, strengthening communication and multitasking skills.
+```bash
+npm install
+npm run dev        # http://localhost:4321
+npm run build      # -> dist/
+npm run preview    # serve the built output
+npm run check      # astro check (TypeScript)
+npm run og         # regenerate og-default.png + favicons
+```
 
-**Game Presenter**  
-Evolution Gaming, Tbilisi, Georgia  
-*February 2023 – July 2025*  
-• Led live game sessions in English for global audiences while making sure the game flows smoothly without any errors and all players are satisfied.
+## Deployment
 
-**Career Break – International Relocation**  
-*September 2021 – February 2023*  
-• Relocated to Georgia and successfully managed the transition while completing the CIC Mission rebranding project (2022–2023).  
-• Engaged in short-term translation and content-creation work, sharpening adaptability, quality focus, and project-management skills.
+Pushing to `main` triggers [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml),
+which builds with `withastro/action` and publishes via `actions/deploy-pages`.
 
-**NOC-Fixed Engineer**  
-Parsonline, Tehran, Iran  
-*October 2019 – July 2021*  
-• Configured, monitored, maintained, and troubleshot large-scale fixed network infrastructure across multiple cities.  
-• Resolved disconnections and service disorders, performed change management, and ensured high network availability.
+The repository's **Settings → Pages → Source** must be set to **GitHub Actions**.
 
-**NOC Engineer**  
-AfraRasa, Tehran, Iran  
-*March 2018 – June 2019*  
-• Provided real-time network monitoring, LAN administration, and technical support.  
-• Managed AAA server (IBSng) and CRM systems for uninterrupted service delivery.
+## Structure
 
-**Trainer (Wireshark / WCNA)**  
-adminportal.ir, Tehran, Iran  
-*February 2018 – April 2018*  
-• Created and delivered 350 minutes of professional Wireshark video training courses.  
-• Designed and organized all training materials for network professionals.
+```
+src/
+  data/profile.ts     ← single source of truth for every fact about Hirad
+  lib/schema.ts       JSON-LD node builders (one canonical Person, referenced by @id)
+  layouts/            BaseLayout
+  components/         Seo, Header, Footer, ThemeToggle, Monogram, Guilloche, WorkCard
+  scripts/art.ts      the "JS Art" layer — guilloché canvas, reveals, theme toggle
+  pages/              index, work/, work/zeeberton, about, cv, contact, 404
+  styles/global.css   design tokens, typography, print stylesheet
+public/               favicons, og-default.png, robots.txt, manifest
+scripts/generate-og.mjs
+```
 
-**Call Center Specialist**  
-Rasane Network, Tehran, Iran  
-*October 2017 – January 2018*  
-• Delivered on-phone technical support and performed live network monitoring.
+### One rule worth knowing
 
-**ADSL Installation Technician**  
-Kavosh Group of Companies, Tehran, Iran  
-*June 2015 – January 2016*  
-• Installed and configured ADSL services at customer premises.
+**Every fact about Hirad lives in [`src/data/profile.ts`](src/data/profile.ts)** — experience,
+skills, certifications, education, languages, links. The CV page, the homepage and the
+JSON-LD structured data all read from it.
 
-## Certifications
+This is deliberate. The previous version of this site kept the same facts in two places
+(`index.html` and `readme.md`) and they drifted: different city, different phone number,
+different certification expiry date. Structured data that contradicts visible copy also
+costs search trust. Keeping one copy makes that class of bug impossible rather than
+merely unlikely.
 
-**Microsoft Certified: Azure Administrator Associate**  
-Microsoft • Credential ID: EA052E7CF66DCDE1 • Cert No: 804A2L-DB2F8B  
-*Earned: 20 May 2024 | Expires: 21 May 2026*  
-[View Credential](https://learn.microsoft.com/api/credentials/share/en-us/HiradFazeli/EA052E7CF66DCDE1?sharingId)
+Change a fact there, and the whole site follows.
 
-**Business Analytics Specialization** – University of Illinois Urbana-Champaign, Aug 2023
+## Design
 
-**IBM IT Support Professional Certificate** – IBM, Jul 2023  
+"Old money with a subtle essence of modernity" — deep ink, parchment, antique brass;
+Caslon headings over Inter body; hairline rules and letterspaced small caps. Dark by
+default, with a warm parchment light mode that follows the OS and can be overridden.
 
-**Agile with Atlassian Jira** – Atlassian, Jun 2023  
+The hero engraving is a **guilloché** — the engine-turned pattern found on banknotes,
+share certificates and watch dials — generated from a hypotrochoid on `<canvas>`. Two
+rosettes counter-rotate at different speeds, and the moiré between them is what moves.
+Each is rendered offscreen exactly once, so the per-frame cost is two `drawImage` calls.
 
-**Brand Management** – University of London, Feb 2023  
+All motion is progressive enhancement: every page renders complete with JavaScript
+disabled, the canvas is `aria-hidden`, and the whole layer stands still under
+`prefers-reduced-motion`.
 
-**Front-End Engineer (React + Redux)** – Codecademy, Jul 2022  
+## Licence
 
-**C# Programming Language** – Laitec IT Learning Lab, Sep 2019  
-
-**CCNP Route (300-101)** – CanDo IT Academy, Apr 2017 
-
-**Microsoft Certified Solutions Expert (MCSE 2012 R2)** – CanDo IT Academy, Sep 2016   
-
-**Kerio Control v9.0** – CanDo IT Academy, Mar 2016
-
-**CCNA Routing & Switching (640-802)** – CyberTech IT Academy, May 2014  
-
-
-## Education
-**Master of Business Administration (MBA)**  
-Mahan Business School, Tehran, Iran  
-*Graduated: December 2020*
-
-## Languages
-• Persian – Native  
-• English – C1  
-• Georgian – A1
-
-## Additional Achievements & Training
-• CIC Mission Rebranding Project (2022–2023)  
-• CCNA 200-125 Hands-on Training Course (2018) – [YouTube Playlist](https://www.youtube.com/playlist?list=PLlE8KNhwt4f4IfeGEfHMzhZngRRxQe974)  
-• WCNA Hands-on Training Course (2018) – [YouTube Playlist](https://www.youtube.com/playlist?list=PLlE8KNhwt4f72Zz8p61MjAAy9a7q4wXAv)
-
-## Interests
-• Continuous learning in cloud technologies  
-• Networking with professionals  
-• Books  
-• Movies & TV Shows  
-• Video games
+Code is free to learn from. The written content, CV and imagery are © Hirad Fazeli.

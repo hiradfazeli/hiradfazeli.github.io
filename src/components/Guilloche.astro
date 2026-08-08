@@ -1,0 +1,51 @@
+---
+export interface Props {
+  /** Horizontal centre of the rosette as a fraction of the box, wide screens only. */
+  cx?: number;
+  /** Scale factor on the medallion — shrink it where hero content runs wide. */
+  scale?: number;
+}
+
+const { cx = 0.5, scale = 1 } = Astro.props;
+
+// Purely decorative engraving behind the hero. aria-hidden and inert to a
+// screen reader; if the script never runs, this is an empty transparent box.
+---
+
+<canvas
+  data-guilloche
+  data-cx={String(cx)}
+  data-scale={String(scale)}
+  class="guilloche"
+  aria-hidden="true"></canvas>
+
+<style>
+  .guilloche {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    z-index: 0;
+    pointer-events: none;
+    /* Restraint is the whole point: a watermark, never the subject. */
+    opacity: 0.34;
+  }
+
+  /* On phones the rosette sits centred behind the type, so it has to recede
+     further or it competes with the headline it is meant to sit behind. */
+  @media (max-width: 48rem) {
+    .guilloche {
+      opacity: 0.16;
+    }
+  }
+
+  :global(:root[data-theme='light']) .guilloche {
+    opacity: 0.5;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :global(:root:not([data-theme])) .guilloche {
+      opacity: 0.5;
+    }
+  }
+</style>

@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Guilloche from '../components/Guilloche.astro';
+import { NAV } from '../data/profile';
+---
+
+<BaseLayout
+  title="Page not found — Hirad Fazeli"
+  description="That page does not exist. Head back to the homepage."
+  noindex={true}
+>
+  <section class="hero">
+    <Guilloche cx={0.78} />
+    <div class="wrap hero__inner">
+      <p class="label">Error 404</p>
+      <h1 class="hero__title">Nothing here</h1>
+      <p class="lede hero__lede">
+        That page has either moved or never existed. The old CV lived at a single
+        address; the site now has several. Try one of these.
+      </p>
+
+      <ul class="routes list-plain">
+        <li><a class="u" href="/">Home</a></li>
+        {NAV.map((item) => (
+          <li><a class="u" href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: grid;
+    /* See index.astro: an auto track would size to the widest child's max-width. */
+    grid-template-columns: minmax(0, 1fr);
+    align-items: center;
+    min-block-size: min(70svh, 34rem);
+    padding-block: clamp(3rem, 2rem + 6vw, 6rem);
+  }
+
+  .hero__inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero__title {
+    font-size: var(--step-5);
+    line-height: 0.95;
+    margin-top: 1rem;
+  }
+
+  .hero__lede {
+    margin-top: 1.5rem;
+  }
+
+  .routes {
+    display: flex;
+    flex-wrap: wrap;
+    /* Gap trimmed to offset the padding added to each link below. */
+    gap: 0.5rem 1.1rem;
+    margin-top: 2.5rem;
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Horizontal padding keeps short labels ("CV") above the 24px target minimum. */
+  .routes a {
+    display: inline-block;
+    padding: 0.6rem 0.45rem;
+  }
+</style>

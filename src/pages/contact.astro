@@ -1,0 +1,232 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Guilloche from '../components/Guilloche.astro';
+import { PERSON } from '../data/profile';
+import { breadcrumbNode, personRef } from '../lib/schema';
+
+const openTo = [
+  {
+    title: 'Azure & infrastructure work',
+    body: 'Certified Azure Administrator (AZ-104) with six years of network operations behind it. Contract or full-time.',
+  },
+  {
+    title: 'Building things together',
+    body: 'If you are working on something in pets, maps, or realtime social products, I am interested in comparing notes.',
+  },
+  {
+    title: 'ZEEberton partnerships',
+    body: 'Vets, groomers, pet shops and dog-friendly places who want to be on the map — or anyone who wants into the beta.',
+  },
+];
+
+const schema = [
+  breadcrumbNode([
+    { name: 'Home', url: '/' },
+    { name: 'Contact', url: '/contact/' },
+  ]),
+  {
+    '@type': 'ContactPage',
+    '@id': 'https://hiradfazeli.github.io/contact/#webpage',
+    url: 'https://hiradfazeli.github.io/contact/',
+    name: 'Contact Hirad Fazeli',
+    description: 'Get in touch with Hirad Fazeli — email and professional profiles.',
+    about: personRef,
+  },
+];
+---
+
+<BaseLayout
+  title="Contact Hirad Fazeli"
+  description="Get in touch with Hirad Fazeli — founder of ZEEberton and Microsoft Certified Azure Administrator, based in Yerevan, Armenia."
+  schema={schema}
+>
+  <section class="hero">
+    <Guilloche cx={0.82} scale={0.8} />
+    <div class="wrap hero__inner">
+      <p class="label page__eyebrow">Contact</p>
+      <h1 class="page__title">Say hello</h1>
+      <p class="lede page__lede">
+        Email is the fastest way to reach me, and it reaches me directly. I read
+        everything and reply to anything that isn't a template.
+      </p>
+
+      <a class="mail" href={`mailto:${PERSON.email}`}>
+        <span class="mail__label label">Email</span>
+        <span class="mail__value">{PERSON.email}</span>
+      </a>
+
+      <p class="mono hero__loc">
+        Based in {PERSON.location.display} &middot; usually replies within a day or two
+      </p>
+    </div>
+  </section>
+
+  <section class="section wrap" aria-labelledby="open-to">
+    <div class="section-head">
+      <h2 id="open-to">What I'm open to</h2>
+      <p class="label">Right now</p>
+    </div>
+
+    <div class="open">
+      {
+        openTo.map((item, i) => (
+          <article class="open__item reveal" data-delay={Math.min(i, 3) || undefined}>
+            <h3 class="open__title">{item.title}</h3>
+            <p class="open__body">{item.body}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="section wrap" aria-labelledby="profiles">
+    <div class="section-head">
+      <h2 id="profiles">Find me elsewhere</h2>
+    </div>
+
+    <ul class="links list-plain">
+      {
+        PERSON.links.map((link, i) => (
+          <li class="reveal" data-delay={Math.min(i, 3) || undefined}>
+            <a class="links__a" href={link.url} rel="me noopener" target="_blank">
+              <span class="links__label">{link.label}</span>
+              <span class="links__handle mono">{link.handle}</span>
+              <span class="links__arrow" aria-hidden="true">&nearr;</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding-block: clamp(2.5rem, 2rem + 6vw, 6rem);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .hero__inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  .page__eyebrow {
+    margin-bottom: 1.25rem;
+  }
+
+  .page__title {
+    font-size: var(--step-4);
+  }
+
+  .page__lede {
+    margin-top: 1.5rem;
+  }
+
+  .mail {
+    display: inline-block;
+    margin-top: clamp(2rem, 1.5rem + 3vw, 3.25rem);
+    padding: clamp(1rem, 0.75rem + 1.5vw, 1.6rem) clamp(1.25rem, 1rem + 2vw, 2.25rem);
+    border: 1px solid var(--rule);
+    text-decoration: none;
+    transition: border-color 0.3s var(--ease), color 0.3s var(--ease);
+    /* Long address must never push the page sideways on a small phone. */
+    max-inline-size: 100%;
+  }
+
+  .mail:hover,
+  .mail:focus-visible {
+    border-color: var(--brass);
+    color: var(--brass);
+  }
+
+  .mail__label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .mail__value {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    line-height: 1.15;
+    word-break: break-word;
+  }
+
+  .hero__loc {
+    margin-top: 1.5rem;
+  }
+
+  /* ------------------------------------------------------------------ open to */
+  .open {
+    display: grid;
+    gap: clamp(1.75rem, 1rem + 3vw, 3rem);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  }
+
+  .open__title {
+    font-size: var(--step-1);
+    color: var(--brass);
+    padding-bottom: 0.75rem;
+    margin-bottom: 0.9rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .open__body {
+    color: var(--muted);
+  }
+
+  /* -------------------------------------------------------------------- links */
+  .links__a {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: baseline;
+    gap: 0.5rem 1rem;
+    padding-block: 1.1rem;
+    border-top: 1px solid var(--rule);
+    text-decoration: none;
+    transition: color 0.3s var(--ease);
+  }
+
+  .links li:last-child .links__a {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .links__a:hover,
+  .links__a:focus-visible {
+    color: var(--brass);
+  }
+
+  .links__label {
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+  }
+
+  .links__handle {
+    word-break: break-word;
+  }
+
+  .links__arrow {
+    color: var(--brass);
+  }
+
+  @media (max-width: 30rem) {
+    .links__a {
+      grid-template-columns: 1fr auto;
+    }
+
+    .links__handle {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mail,
+    .links__a {
+      transition: none;
+    }
+  }
+</style>

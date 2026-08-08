@@ -1,0 +1,76 @@
+---
+import { PERSON } from '../data/profile';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <div class="site-footer__col">
+      <p class="label">Elsewhere</p>
+      <ul class="list-plain site-footer__links">
+        {
+          PERSON.links.map((link) => (
+            <li>
+              <a class="u" href={link.url} rel="me noopener" target="_blank">
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="site-footer__col">
+      <p class="label">Direct</p>
+      <p>
+        <a class="u" href={`mailto:${PERSON.email}`}>{PERSON.email}</a>
+      </p>
+      <p class="mono">{PERSON.location.display}</p>
+    </div>
+
+    <div class="site-footer__col site-footer__col--end">
+      <p class="mono">&copy; {year} {PERSON.name}</p>
+      <p class="mono">Built with Astro · Hosted on GitHub Pages</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--rule);
+    padding-block: clamp(2rem, 1rem + 4vw, 3.5rem);
+    margin-top: var(--section-gap);
+  }
+
+  .site-footer__inner {
+    display: grid;
+    gap: clamp(1.75rem, 1rem + 3vw, 3rem);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  }
+
+  .site-footer__col > * + * {
+    margin-top: 0.5rem;
+  }
+
+  .site-footer__col .label {
+    margin-bottom: 0.9rem;
+  }
+
+  .site-footer__links {
+    display: grid;
+    gap: 0.4rem;
+  }
+
+  .site-footer__links a {
+    /* Keeps stacked links from becoming a cramped tap zone. */
+    display: inline-block;
+    padding-block: 0.25rem;
+  }
+
+  @media (min-width: 48rem) {
+    .site-footer__col--end {
+      text-align: right;
+    }
+  }
+</style>

@@ -1,0 +1,319 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Guilloche from '../components/Guilloche.astro';
+import WorkCard from '../components/WorkCard.astro';
+import { CERTIFICATIONS, PERSON, PROJECTS, SKILLS } from '../data/profile';
+import { organizationNode, personRef, websiteNode } from '../lib/schema';
+
+const statement = 'I build ZEEberton — a live map for pet owners.';
+const words = statement.split(' ');
+
+const az104 = CERTIFICATIONS.find((c) => c.identifier === 'AZ-104')!;
+
+const schema = [
+  websiteNode,
+  organizationNode,
+  {
+    '@type': 'WebPage',
+    '@id': 'https://hiradfazeli.github.io/#webpage',
+    url: 'https://hiradfazeli.github.io/',
+    name: `${PERSON.name} — ${PERSON.headline}`,
+    description: PERSON.metaSummary,
+    isPartOf: { '@id': 'https://hiradfazeli.github.io/#website' },
+    about: personRef,
+    primaryImageOfPage: 'https://hiradfazeli.github.io/og-default.png',
+  },
+];
+---
+
+<BaseLayout
+  title="Hirad Fazeli — Founder & Engineer | Builder of ZEEberton"
+  description={PERSON.metaSummary}
+  schema={schema}
+>
+  <section class="hero">
+    <Guilloche cx={0.76} />
+
+    <div class="wrap hero__inner">
+      <p class="hero__eyebrow label">
+        {PERSON.location.display} &middot; {PERSON.headline}
+      </p>
+
+      <h1 class="hero__name">{PERSON.name}</h1>
+
+      <p class="hero__statement">
+        {
+          words.map((word, i) => (
+            <>
+              <span class="ink-word" style={`--i:${i}`}>{word}</span>{' '}
+            </>
+          ))
+        }
+      </p>
+
+      <p class="lede hero__lede">
+        I design, build and run it solo — the product, the launch, and everything in
+        between. Before that, six years keeping other people's networks alive.
+      </p>
+
+      <div class="hero__actions">
+        <a class="btn" href="/work/zeeberton/">Read the case study</a>
+        <a class="btn btn--ghost" href="/cv/">View CV</a>
+      </div>
+    </div>
+  </section>
+
+  {/* ------------------------------------------------------------- credibility */}
+  <section class="section wrap" aria-labelledby="now-heading">
+    <div class="section-head">
+      <h2 id="now-heading">Where things stand</h2>
+      <p class="label">Currently</p>
+    </div>
+
+    <ul class="facts list-plain">
+      <li class="fact reveal">
+        <p class="fact__k mono">Building</p>
+        <p class="fact__v">ZEEberton</p>
+        <p class="fact__d">
+          Map-first social network for pet owners, anywhere. Founder and sole developer
+          since May 2026.
+        </p>
+      </li>
+      <li class="fact reveal" data-delay="1">
+        <p class="fact__k mono">Certified</p>
+        <p class="fact__v">Azure Administrator</p>
+        <p class="fact__d">
+          Microsoft Certified: Azure Administrator Associate ({az104.identifier}),
+          earned {az104.earned} and valid through {az104.expires}.
+        </p>
+      </li>
+      <li class="fact reveal" data-delay="2">
+        <p class="fact__k mono">Background</p>
+        <p class="fact__v">6+ years in network operations</p>
+        <p class="fact__d">
+          NOC and infrastructure engineering across Iran and Georgia — large-scale
+          fixed networks, monitoring, and change management.
+        </p>
+      </li>
+    </ul>
+  </section>
+
+  {/* -------------------------------------------------------------------- work */}
+  <section class="section wrap" aria-labelledby="work-heading">
+    <div class="section-head">
+      <h2 id="work-heading">Selected work</h2>
+      <a class="u mono" href="/work/">All work &rarr;</a>
+    </div>
+
+    {PROJECTS.slice(0, 3).map((project, i) => (
+      <WorkCard project={project} delay={Math.min(i, 3) as 0 | 1 | 2 | 3} />
+    ))}
+  </section>
+
+  {/* ------------------------------------------------------------------ skills */}
+  <section class="section wrap" aria-labelledby="skills-heading">
+    <div class="section-head">
+      <h2 id="skills-heading">What I work with</h2>
+      <p class="label">Capabilities</p>
+    </div>
+
+    <div class="skills">
+      {
+        SKILLS.map((group, i) => (
+          <div class="skills__group reveal" data-delay={Math.min(i, 3) || undefined}>
+            <h3 class="skills__title">{group.group}</h3>
+            <ul class="list-plain skills__list">
+              {group.items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  {/* --------------------------------------------------------------------- cta */}
+  <section class="section wrap">
+    <div class="cta reveal">
+      <h2 class="cta__title">Building something, or hiring for cloud?</h2>
+      <p class="lede cta__lede">
+        I'm open to collaboration on ZEEberton, and to Azure and infrastructure work.
+      </p>
+      <a class="btn" href="/contact/">Get in touch</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* --------------------------------------------------------------------- hero */
+  .hero {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    /*
+      An `auto` track takes its base size from the max-content contribution of
+      its children. `.wrap` sizes itself with a percentage, which cannot resolve
+      during intrinsic sizing, so the track would grow to the widest child's
+      max-width (34rem) and overflow narrow viewports. minmax(0, 1fr) caps it.
+    */
+    grid-template-columns: minmax(0, 1fr);
+    align-items: center;
+    min-block-size: min(84svh, 46rem);
+    padding-block: clamp(3rem, 2rem + 8vw, 7rem);
+    border-bottom: 1px solid var(--rule);
+    overflow: hidden;
+  }
+
+  .hero__inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero__eyebrow {
+    margin-bottom: clamp(1.25rem, 1rem + 2vw, 2.25rem);
+  }
+
+  .hero__name {
+    font-size: var(--step-5);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+  }
+
+  .hero__statement {
+    font-family: var(--font-display);
+    font-size: var(--step-3);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--brass);
+    margin-top: clamp(0.75rem, 0.5rem + 1vw, 1.25rem);
+    max-width: 20ch;
+    text-wrap: balance;
+  }
+
+  .hero__lede {
+    margin-top: clamp(1.25rem, 1rem + 2vw, 2rem);
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: clamp(1.75rem, 1.25rem + 2vw, 2.75rem);
+  }
+
+  /* ------------------------------------------------------------------ buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-block-size: 48px;
+    padding-inline: 1.4rem;
+    border: 1px solid var(--brass);
+    color: var(--brass);
+    background: transparent;
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color 0.3s var(--ease), color 0.3s var(--ease);
+  }
+
+  .btn:hover,
+  .btn:focus-visible {
+    background: var(--brass);
+    /* --ink is the page canvas in both themes, so this stays high-contrast. */
+    color: var(--ink);
+  }
+
+  .btn--ghost {
+    border-color: var(--rule);
+    color: var(--muted);
+  }
+
+  .btn--ghost:hover,
+  .btn--ghost:focus-visible {
+    background: transparent;
+    border-color: var(--parchment);
+    color: var(--parchment);
+  }
+
+  /* -------------------------------------------------------------------- facts */
+  .facts {
+    display: grid;
+    gap: 0;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  }
+
+  .fact {
+    padding: clamp(1.25rem, 1rem + 1.5vw, 2rem) 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .fact__k {
+    color: var(--brass);
+    margin-bottom: 0.6rem;
+  }
+
+  .fact__v {
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+  }
+
+  .fact__d {
+    color: var(--muted);
+    font-size: var(--step--1);
+    max-width: 30ch;
+  }
+
+  @media (min-width: 46rem) {
+    .facts {
+      gap: 0 clamp(1.5rem, 1rem + 3vw, 3.5rem);
+    }
+  }
+
+  /* ------------------------------------------------------------------- skills */
+  .skills {
+    display: grid;
+    gap: clamp(2rem, 1rem + 4vw, 3.5rem);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  }
+
+  .skills__title {
+    font-size: var(--step-1);
+    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .skills__list {
+    display: grid;
+    gap: 0.45rem;
+    color: var(--muted);
+    font-size: var(--step--1);
+  }
+
+  /* ---------------------------------------------------------------------- cta */
+  .cta {
+    border: 1px solid var(--rule);
+    padding: clamp(2rem, 1.25rem + 4vw, 4rem);
+    text-align: center;
+  }
+
+  .cta__title {
+    font-size: var(--step-3);
+  }
+
+  .cta__lede {
+    margin: 1rem auto 2rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn {
+      transition: none;
+    }
+  }
+</style>

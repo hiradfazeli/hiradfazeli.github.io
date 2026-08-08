@@ -1,0 +1,99 @@
+---
+// Progressive enhancement: without JS the OS preference still applies via
+// prefers-color-scheme, so the missing button costs the visitor nothing.
+---
+
+<button
+  id="theme-toggle"
+  type="button"
+  class="toggle"
+  aria-label="Switch colour theme"
+  title="Switch colour theme"
+>
+  <svg class="toggle__icon toggle__icon--sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <circle cx="12" cy="12" r="4.4" stroke="currentColor" stroke-width="1.5" fill="none" />
+    <path
+      d="M12 2.6v2.6M12 18.8v2.6M2.6 12h2.6M18.8 12h2.6M5.3 5.3l1.9 1.9M16.8 16.8l1.9 1.9M18.7 5.3l-1.9 1.9M7.2 16.8l-1.9 1.9"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+    />
+  </svg>
+  <svg class="toggle__icon toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path
+      d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.4 8.4 0 1 0 10.2 10.2Z"
+      stroke="currentColor"
+      stroke-width="1.5"
+      fill="none"
+      stroke-linejoin="round"
+    />
+  </svg>
+</button>
+
+<style>
+  .toggle {
+    /* 44px minimum touch target — this is a real control, not a decoration. */
+    inline-size: 44px;
+    block-size: 44px;
+    display: grid;
+    place-items: center;
+    background: transparent;
+    border: 1px solid var(--rule);
+    color: var(--muted);
+    cursor: pointer;
+    transition: color 0.25s var(--ease), border-color 0.25s var(--ease);
+  }
+
+  .toggle:hover,
+  .toggle:focus-visible {
+    color: var(--brass);
+    border-color: var(--brass);
+  }
+
+  .toggle__icon {
+    inline-size: 18px;
+    block-size: 18px;
+    grid-area: 1 / 1;
+  }
+
+  /*
+    Show the icon for the theme you would switch TO: a sun while dark, a moon
+    while light. The default (no stored choice) is dark, so the sun shows unless
+    the OS asks for light.
+  */
+  .toggle__icon--moon {
+    display: none;
+  }
+  .toggle__icon--sun {
+    display: block;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :global(:root:not([data-theme])) .toggle__icon--sun {
+      display: none;
+    }
+    :global(:root:not([data-theme])) .toggle__icon--moon {
+      display: block;
+    }
+  }
+
+  :global(:root[data-theme='dark']) .toggle__icon--sun {
+    display: block;
+  }
+  :global(:root[data-theme='dark']) .toggle__icon--moon {
+    display: none;
+  }
+
+  :global(:root[data-theme='light']) .toggle__icon--sun {
+    display: none;
+  }
+  :global(:root[data-theme='light']) .toggle__icon--moon {
+    display: block;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .toggle {
+      transition: none;
+    }
+  }
+</style>

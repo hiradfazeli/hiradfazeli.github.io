@@ -1,0 +1,133 @@
+---
+import type { Project } from '../data/profile';
+
+export interface Props {
+  project: Project;
+  delay?: 0 | 1 | 2 | 3;
+  /**
+   * Heading level for the project name. On /work/ the cards sit directly under
+   * the h1 so they must be h2; on the homepage they sit under an h2 ("Selected
+   * work") so they must be h3. Hard-coding either one skips a level somewhere.
+   */
+  as?: 'h2' | 'h3';
+}
+
+const { project, delay = 0, as: Heading = 'h3' } = Astro.props;
+
+// The case study wins when there is one; otherwise link straight out.
+const href = project.caseStudy ?? project.href;
+const external = !project.caseStudy && Boolean(project.href);
+---
+
+<article class="card reveal" data-delay={delay || undefined}>
+  <div class="card__index mono">{project.index}</div>
+
+  <div class="card__body">
+    <Heading class="card__title">
+      {
+        href ? (
+          <a
+            class="card__link"
+            href={href}
+            {...(external ? { target: '_blank', rel: 'noopener' } : {})}
+          >
+            {project.name}
+            {external && <span class="card__ext" aria-hidden="true">↗</span>}
+          </a>
+        ) : (
+          project.name
+        )
+      }
+    </Heading>
+
+    <p class="card__meta mono">{project.role} · {project.period}</p>
+    <p class="card__blurb">{project.blurb}</p>
+
+    <ul class="card__stack list-plain">
+      {project.tags.map((s: string) => <li class="chip mono">{s}</li>)}
+    </ul>
+  </div>
+</article>
+
+<style>
+  .card {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: clamp(1rem, 0.5rem + 2vw, 2.5rem);
+    padding-block: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+    border-top: 1px solid var(--rule);
+  }
+
+  .card__index {
+    font-size: var(--step-0);
+    color: var(--brass);
+    letter-spacing: 0.1em;
+    padding-top: 0.35em;
+  }
+
+  .card__title {
+    font-size: var(--step-2);
+    margin-bottom: 0.35rem;
+  }
+
+  /* Full-card affordance without nesting interactive elements. */
+  .card__link {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    transition: color 0.3s var(--ease);
+  }
+
+  .card__link:hover,
+  .card__link:focus-visible {
+    color: var(--brass);
+  }
+
+  .card__ext {
+    font-size: 0.6em;
+    color: var(--brass);
+  }
+
+  .card__meta {
+    margin-bottom: 0.9rem;
+  }
+
+  .card__blurb {
+    max-width: var(--measure);
+    color: var(--muted);
+  }
+
+  .card__stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1.1rem;
+  }
+
+  .chip {
+    border: 1px solid var(--rule);
+    padding: 0.2rem 0.55rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  @media (max-width: 34rem) {
+    .card {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+
+    .card__index {
+      padding-top: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card__link {
+      transition: none;
+    }
+  }
+</style>
