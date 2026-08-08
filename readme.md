@@ -1,6 +1,6 @@
 # hiradfazeli.github.io
 
-Personal site of **Hirad Fazeli** — founder & engineer, building [ZEEberton](https://zeeberton.com).
+Personal site of **Hirad Fazeli** — founder of [ZEEberton](https://zeeberton.com), Microsoft Certified Azure Administrator.
 
 Live at **<https://hiradfazeli.github.io>**.
 

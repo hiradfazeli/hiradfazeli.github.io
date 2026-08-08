@@ -117,9 +117,9 @@ const ogSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}
 
   <line x1="96" y1="370" x2="300" y2="370" stroke="${BRASS}" stroke-width="2"/>
 
-  <text x="96" y="424" fill="${BRASS}" font-family="Georgia, 'Times New Roman', serif" font-size="40">Founder &amp; Engineer</text>
+  <text x="96" y="424" fill="${BRASS}" font-family="Georgia, 'Times New Roman', serif" font-size="40">Founder &amp; Cloud Engineer</text>
 
-  <text x="96" y="474" fill="${MUTED}" font-family="Consolas, 'Courier New', monospace" font-size="23" letter-spacing="1.5">Building ZEEberton — a live map for pet owners</text>
+  <text x="96" y="474" fill="${MUTED}" font-family="Consolas, 'Courier New', monospace" font-size="23" letter-spacing="1.5">ZEEberton — a live map for pet owners</text>
 
   <text x="96" y="540" fill="${MUTED}" font-family="Consolas, 'Courier New', monospace" font-size="20" letter-spacing="3" opacity="0.8">HIRADFAZELI.GITHUB.IO</text>
 </svg>`;
@@ -142,8 +142,8 @@ console.log(`signature.png ${sigMeta.width}x${sigMeta.height}`);
 
 /* ------------------------------------------------------------------ favicon */
 
-// Filled brass disc so the mark stays readable at 16px, with the HF knocked
-// through in the page's ink colour.
+// Deliberately NOT the signature: at 16px a signature collapses into a smudge,
+// while the HF disc stays legible. Owner's call to leave the favicon as it was.
 const faviconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
   <circle cx="32" cy="32" r="32" fill="${BRASS}"/>
   <g stroke="${INK}" stroke-width="5" stroke-linecap="square" fill="none">

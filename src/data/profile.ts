@@ -26,15 +26,20 @@ export const SITE = {
 
 export const PERSON = {
   name: 'Hirad Fazeli',
-  /** Leads with what he does now; the certification is the credibility layer. */
-  headline: 'Founder & Engineer',
-  jobTitle: 'Founder & Developer, ZEEberton',
-  tagline: 'I build ZEEberton — a live map for pet owners.',
+  /**
+   * Leads with what he does now; the certification is the credibility layer.
+   * "Cloud Engineer" rather than a bare "Engineer" on purpose — his engineering
+   * is infrastructure and networking, and the unqualified word alongside
+   * ZEEberton would imply he writes the app himself.
+   */
+  headline: 'Founder & Cloud Engineer',
+  jobTitle: 'Founder, ZEEberton',
+  tagline: 'I run ZEEberton — a live map for pet owners.',
   summary:
-    'Founder and developer of ZEEberton, a map-first social network for pet owners that I design, build and run solo — from the product itself to how it reaches people. Before that, six years in network operations and infrastructure across Iran and Georgia, and a Microsoft Certified Azure Administrator (AZ-104).',
+    'Founder of ZEEberton, a map-first social network for pet owners that I run end to end on my own — product direction, releases, launch and partnerships. Before that, six years in network operations and infrastructure across Iran and Georgia, and a Microsoft Certified Azure Administrator (AZ-104).',
   /** Short form for meta descriptions and OG cards. Keep under ~155 characters. */
   metaSummary:
-    'Founder & developer of ZEEberton, a live map for pet owners. Microsoft Certified Azure Administrator (AZ-104) with 6+ years in network operations.',
+    'Founder of ZEEberton, a live map for pet owners. Microsoft Certified Azure Administrator (AZ-104) with 6+ years in network operations.',
   email: 'hiradfazeli@zeeberton.com',
   location: {
     city: 'Yerevan',
@@ -98,7 +103,7 @@ export type Role = {
 
 export const EXPERIENCE: Role[] = [
   {
-    title: 'Founder & Developer',
+    title: 'Founder',
     org: 'ZEEberton',
     location: 'Yerevan, Armenia',
     start: 'May 2026',
@@ -107,7 +112,7 @@ export const EXPERIENCE: Role[] = [
     current: true,
     points: [
       'Founded and run a map-first social network for pet owners — a live map that helps neighbours meet for walks and playdates, form packs, and raise lost-pet alerts.',
-      'Own the product end to end as a single-person team: design, build, release, support, and everything running behind it.',
+      'Own the product end to end as a single-person team — roadmap, design direction, release schedule, support and day-to-day operations.',
       'Launched on Google Play and localised into multiple languages for an international audience.',
       'Run go-to-market directly — positioning, store presence, pricing, and partnerships with vets, groomers and pet businesses.',
     ],
@@ -225,9 +230,9 @@ export const PROJECTS: Project[] = [
     index: '01',
     name: 'ZEEberton',
     period: '2026 — Present',
-    role: 'Founder & sole developer',
+    role: 'Founder',
     blurb:
-      'A map-first social network that puts dog and cat owners on a live map so they can plan walks, form packs and catch lost-pet alerts in their neighbourhood. Founded, built and run solo.',
+      'A map-first social network that puts dog and cat owners on a live map so they can plan walks, form packs and catch lost-pet alerts in their neighbourhood. Founded and run solo.',
     tags: ['Consumer product', 'Mobile app', 'Community', 'Partnerships', 'Multilingual'],
     href: 'https://zeeberton.com',
     caseStudy: '/work/zeeberton/',

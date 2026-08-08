@@ -5,7 +5,7 @@ import WorkCard from '../components/WorkCard.astro';
 import { CERTIFICATIONS, PERSON, PROJECTS, SKILLS } from '../data/profile';
 import { organizationNode, personRef, websiteNode } from '../lib/schema';
 
-const statement = 'I build ZEEberton — a live map for pet owners.';
+const statement = 'I run ZEEberton — a live map for pet owners.';
 const words = statement.split(' ');
 
 const az104 = CERTIFICATIONS.find((c) => c.identifier === 'AZ-104')!;
@@ -27,7 +27,7 @@ const schema = [
 ---
 
 <BaseLayout
-  title="Hirad Fazeli — Founder & Engineer | Builder of ZEEberton"
+  title="Hirad Fazeli — Founder of ZEEberton | Cloud & Network Engineer"
   description={PERSON.metaSummary}
   schema={schema}
 >
@@ -52,8 +52,8 @@ const schema = [
       </p>
 
       <p class="lede hero__lede">
-        I design, build and run it solo — the product, the launch, and everything in
-        between. Before that, six years keeping other people's networks alive.
+        I run it solo — product, launch, partnerships and everything in between.
+        Before that, six years keeping other people's networks alive.
       </p>
 
       <div class="hero__actions">
@@ -72,11 +72,11 @@ const schema = [
 
     <ul class="facts list-plain">
       <li class="fact reveal">
-        <p class="fact__k mono">Building</p>
+        <p class="fact__k mono">Running</p>
         <p class="fact__v">ZEEberton</p>
         <p class="fact__d">
-          Map-first social network for pet owners, anywhere. Founder and sole developer
-          since May 2026.
+          Map-first social network for pet owners, anywhere. Founder since May 2026,
+          running it single-handed.
         </p>
       </li>
       <li class="fact reveal" data-delay="1">
