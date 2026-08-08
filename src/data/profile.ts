@@ -64,17 +64,20 @@ export const PERSON = {
       handle: 'Verified transcript',
     },
   ],
+  /*
+    Must mirror the visible skills on /cv/. Structured data that claims expertise
+    the page does not show costs search trust — and would misrepresent him.
+  */
   knowsAbout: [
+    'Startup leadership',
+    'Product strategy',
+    'Go-to-market strategy',
+    'Brand management',
+    'Business analytics',
+    'Agile delivery',
     'Microsoft Azure',
     'Cloud infrastructure',
     'Network operations',
-    'TypeScript',
-    'React Native',
-    'NestJS',
-    'PostgreSQL',
-    'PostGIS',
-    'Realtime systems',
-    'Mobile app development',
   ],
 } as const;
 
@@ -268,17 +271,18 @@ export const PROJECTS: Project[] = [
 
 export const SKILLS = [
   {
-    group: 'Product & Engineering',
+    group: 'Business & Leadership',
     items: [
-      'TypeScript',
-      'React & React Native (Expo)',
-      'Next.js',
-      'NestJS / Node.js',
-      'Prisma ORM',
-      'PostgreSQL + PostGIS',
-      'REST API design',
-      'Realtime (WebSockets, SignalR)',
-      'C#',
+      'Founding & running a startup',
+      'Product strategy & roadmapping',
+      'Go-to-market & launch planning',
+      'Brand management & positioning',
+      'Business analytics & KPIs',
+      'Agile delivery (Scrum, Jira)',
+      'Pricing & monetisation',
+      'B2B partnerships & sales',
+      'Stakeholder communication',
+      'Training & knowledge transfer',
     ],
   },
   {

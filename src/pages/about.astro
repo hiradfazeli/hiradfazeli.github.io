@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Signature from '../components/Signature.astro';
 import portrait from '../assets/hiradfazeli.png';
 import { INTERESTS, LANGUAGES, PERSON, SITE } from '../data/profile';
 import { breadcrumbNode, organizationNode, personNode } from '../lib/schema';
@@ -113,6 +114,8 @@ const schema = [
         The through-line, if there is one: I like systems that have to stay up, and I
         would rather understand a thing end to end than own a comfortable slice of it.
       </p>
+
+      <Signature width="min(15rem, 60%)" class="bio__sign" />
     </div>
   </section>
 
@@ -218,6 +221,11 @@ const schema = [
 
   .bio__text {
     max-width: 42ch;
+  }
+
+  /* Signs off the personal story, the way a letter would. */
+  .bio__sign {
+    margin-top: clamp(1.5rem, 1rem + 2vw, 2.5rem);
   }
 
   @media (min-width: 34rem) {

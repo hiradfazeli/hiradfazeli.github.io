@@ -1,6 +1,6 @@
 ---
 import { NAV, PERSON } from '../data/profile';
-import Monogram from './Monogram.astro';
+import Signature from './Signature.astro';
 import ThemeToggle from './ThemeToggle.astro';
 
 const path = Astro.url.pathname;
@@ -10,7 +10,7 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
 <header class="site-header">
   <div class="wrap site-header__inner">
     <a class="brand" href="/" aria-label={`${PERSON.name} — home`}>
-      <Monogram size={34} />
+      <Signature width="3.6rem" class="brand__sig" />
       <span class="brand__name">{PERSON.name}</span>
     </a>
 
@@ -56,6 +56,16 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
     text-decoration: none;
     /* Comfortable target without inflating the header. */
     min-block-size: 44px;
+  }
+
+  .brand__sig {
+    flex: none;
+    transition: opacity 0.3s var(--ease);
+  }
+
+  .brand:hover .brand__sig,
+  .brand:focus-visible .brand__sig {
+    opacity: 0.75;
   }
 
   .brand__name {
@@ -123,7 +133,8 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .nav__link {
+    .nav__link,
+    .brand__sig {
       transition: none;
     }
   }

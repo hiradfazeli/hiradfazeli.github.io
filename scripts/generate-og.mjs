@@ -1,5 +1,6 @@
 /**
  * Generates the static brand assets that must exist as real files:
+ *   public/signature.png    the logo — Hirad's signature, white on transparent
  *   public/og-default.png   1200x630 share card
  *   public/favicon.svg      scalable monogram
  *   public/favicon.ico      32x32 (PNG-in-ICO, for /favicon.ico requests)
@@ -21,10 +22,51 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const publicDir = resolve(root, 'public');
 mkdirSync(publicDir, { recursive: true });
 
+const SIGNATURE_SRC = resolve(root, 'scripts/src/signature-source.png');
+
 const INK = '#0e100d';
 const PARCHMENT = '#ede7da';
 const BRASS = '#c2a36b';
 const MUTED = '#a39c8b';
+
+/* ---------------------------------------------------------------- signature */
+
+/**
+ * The source scan is already dark ink on transparent, so its alpha channel IS
+ * the signature shape. We keep only that alpha and repaint the colour, which
+ * means one asset can be tinted to anything — the site uses it as a CSS mask so
+ * the logo takes the accent colour and follows light/dark mode automatically,
+ * rather than being a fixed-colour image sitting in a white box.
+ */
+async function signatureAlpha() {
+  const src = sharp(SIGNATURE_SRC);
+  // Trim the transparent margin so the mark is flush with its box; without this
+  // the logo carries invisible padding and never aligns to anything.
+  const trimmed = await src.trim({ threshold: 1 }).toBuffer();
+  const meta = await sharp(trimmed).metadata();
+  return { buffer: trimmed, width: meta.width, height: meta.height };
+}
+
+/** Repaint the signature in a flat colour, preserving the antialiased edges. */
+async function tintedSignature(color, targetWidth) {
+  const { buffer, width, height } = await signatureAlpha();
+  const h = Math.round((height / width) * targetWidth);
+
+  // .raw() matters: joinChannel needs raw pixel bytes, and toBuffer() would
+  // otherwise hand back an encoded PNG of the wrong length.
+  const alpha = await sharp(buffer)
+    .resize(targetWidth, h)
+    .extractChannel('alpha')
+    .raw()
+    .toBuffer();
+
+  return sharp({
+    create: { width: targetWidth, height: h, channels: 3, background: color },
+  })
+    .joinChannel(alpha, { raw: { width: targetWidth, height: h, channels: 1 } })
+    .png()
+    .toBuffer();
+}
 
 /** Same curve as src/scripts/art.ts, emitted as an SVG path. */
 function rosettePath(cx, cy, outer, { p, q, d, phase = 0, steps = 620 }) {
@@ -71,14 +113,6 @@ const ogSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}
   <!-- hairline frame -->
   <rect x="46" y="46" width="${W - 92}" height="${H - 92}" fill="none" stroke="${BRASS}" stroke-width="1" opacity="0.4"/>
 
-  <!-- monogram roundel -->
-  <g transform="translate(96, 96)" fill="none" stroke="${BRASS}" stroke-linecap="square">
-    <circle cx="30" cy="30" r="28.5" stroke-width="1" opacity="0.6"/>
-    <circle cx="30" cy="30" r="25" stroke-width="0.6" opacity="0.4"/>
-    <path d="M18 20 V40 M18 30 H30 M30 20 V40" stroke-width="2"/>
-    <path d="M35 40 V20 H45 M35 30 H42" stroke-width="2"/>
-  </g>
-
   <text x="96" y="330" fill="${PARCHMENT}" font-family="Georgia, 'Times New Roman', serif" font-size="96" letter-spacing="-1">Hirad Fazeli</text>
 
   <line x1="96" y1="370" x2="300" y2="370" stroke="${BRASS}" stroke-width="2"/>
@@ -90,7 +124,21 @@ const ogSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}
   <text x="96" y="540" fill="${MUTED}" font-family="Consolas, 'Courier New', monospace" font-size="20" letter-spacing="3" opacity="0.8">HIRADFAZELI.GITHUB.IO</text>
 </svg>`;
 
-await sharp(Buffer.from(ogSvg)).png({ compressionLevel: 9 }).toFile(resolve(publicDir, 'og-default.png'));
+// The signature is the logo, so it sits where the monogram used to — composited
+// in brass rather than drawn, because it is a scan, not a vector.
+const ogSignature = await tintedSignature(BRASS, 210);
+await sharp(Buffer.from(ogSvg))
+  .composite([{ input: ogSignature, left: 96, top: 84 }])
+  .png({ compressionLevel: 9 })
+  .toFile(resolve(publicDir, 'og-default.png'));
+
+// Site logo. White because the page uses it as a CSS mask and repaints it; the
+// colour here is irrelevant, only the alpha survives. 700px wide covers the
+// largest on-page use (~260px) at 2x.
+const siteSignature = await tintedSignature('#ffffff', 700);
+writeFileSync(resolve(publicDir, 'signature.png'), siteSignature);
+const sigMeta = await sharp(siteSignature).metadata();
+console.log(`signature.png ${sigMeta.width}x${sigMeta.height}`);
 
 /* ------------------------------------------------------------------ favicon */
 

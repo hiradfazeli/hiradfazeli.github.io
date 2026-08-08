@@ -1,0 +1,61 @@
+---
+export interface Props {
+  /** Rendered width, any CSS length. Height follows the signature's ratio. */
+  width?: string;
+  /** Colour to paint the mark. Defaults to the brass accent. */
+  color?: string;
+  /**
+   * Accessible name. Omit inside an element that already has one (the header
+   * link, for instance) so the signature is not announced twice.
+   */
+  label?: string;
+  class?: string;
+}
+
+const { width = '3.5rem', color, label, class: className = '' } = Astro.props;
+
+const style = [`--sig-w:${width}`, color && `--sig-color:${color}`]
+  .filter(Boolean)
+  .join(';');
+---
+
+{/*
+  The logo is Hirad's own signature. The asset is white-on-transparent and is
+  applied as a CSS mask rather than drawn as an image, so the mark is painted
+  with a colour we control — it picks up the brass accent and follows light and
+  dark mode automatically, instead of being a fixed-colour scan in a white box.
+*/}
+<span
+  class:list={['sig', className]}
+  style={style}
+  role={label ? 'img' : undefined}
+  aria-label={label}
+  aria-hidden={label ? undefined : 'true'}></span>
+
+<style>
+  .sig {
+    display: block;
+    inline-size: var(--sig-w);
+    /* Intrinsic ratio of the trimmed signature (700x541), so it never shifts layout. */
+    aspect-ratio: 700 / 541;
+  }
+
+  /*
+    Only paint once masking is confirmed available. Without the guard, a browser
+    that lacks mask support would render a solid brass rectangle where the
+    signature should be — far worse than showing nothing.
+  */
+  @supports (-webkit-mask-image: url('/signature.png')) or (mask-image: url('/signature.png')) {
+    .sig {
+      background-color: var(--sig-color, var(--brass));
+      -webkit-mask-image: url('/signature.png');
+      mask-image: url('/signature.png');
+      -webkit-mask-size: contain;
+      mask-size: contain;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-position: center;
+      mask-position: center;
+    }
+  }
+</style>
