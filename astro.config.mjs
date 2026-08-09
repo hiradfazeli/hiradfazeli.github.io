@@ -1,6 +1,33 @@
 // @ts-check
+import { copyFileSync, existsSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+
+/**
+ * @astrojs/sitemap emits `sitemap-index.xml`, but `/sitemap.xml` is the path
+ * people and tools actually reach for — it is what Search Console's own field
+ * suggests, and submitting it against this site returned a 404. GitHub Pages
+ * cannot issue redirects, so we publish the index under both names.
+ * @returns {import('astro').AstroIntegration}
+ */
+function sitemapAlias() {
+  return {
+    name: 'sitemap-alias',
+    hooks: {
+      'astro:build:done': ({ dir, logger }) => {
+        const from = fileURLToPath(new URL('sitemap-index.xml', dir));
+        const to = fileURLToPath(new URL('sitemap.xml', dir));
+        if (!existsSync(from)) {
+          logger.warn('sitemap-index.xml missing; /sitemap.xml not created');
+          return;
+        }
+        copyFileSync(from, to);
+        logger.info('aliased sitemap-index.xml -> sitemap.xml');
+      },
+    },
+  };
+}
 
 // User site: served from the root of hiradfazeli.github.io, so `base` must stay unset.
 export default defineConfig({
@@ -20,6 +47,7 @@ export default defineConfig({
         return item;
       },
     }),
+    sitemapAlias(),
   ],
   image: {
     responsiveStyles: true,
