@@ -245,10 +245,10 @@ export const PROJECTS: Project[] = [
     slug: 'rancho-gardabani',
     name: 'Rancho Gardabani',
     period: '2026',
-    role: 'Design',
+    role: 'Web design',
     blurb:
-      'Brand and site design for a working farm outside Tbilisi. A heritage-first identity built on full-bleed landscape photography, with the whole site running in Georgian, English and Russian.',
-    tags: ['Web design', 'Brand identity', 'Art direction', 'Trilingual'],
+      'Website design for a working farm outside Tbilisi — layout, typography and a full-bleed landscape treatment, across a trilingual site running in Georgian, English and Russian.',
+    tags: ['Web design', 'UI design', 'Responsive', 'Trilingual'],
     href: 'https://ranch.ge/',
   },
   {
