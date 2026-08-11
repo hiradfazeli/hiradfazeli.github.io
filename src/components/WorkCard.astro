@@ -3,6 +3,8 @@ import type { Project } from '../data/profile';
 
 export interface Props {
   project: Project;
+  /** Display number, derived from list position by the caller. */
+  index: string;
   delay?: 0 | 1 | 2 | 3;
   /**
    * Heading level for the project name. On /work/ the cards sit directly under
@@ -12,7 +14,7 @@ export interface Props {
   as?: 'h2' | 'h3';
 }
 
-const { project, delay = 0, as: Heading = 'h3' } = Astro.props;
+const { project, index, delay = 0, as: Heading = 'h3' } = Astro.props;
 
 // The case study wins when there is one; otherwise link straight out.
 const href = project.caseStudy ?? project.href;
@@ -20,7 +22,7 @@ const external = !project.caseStudy && Boolean(project.href);
 ---
 
 <article class="card reveal" data-delay={delay || undefined}>
-  <div class="card__index mono">{project.index}</div>
+  <div class="card__index mono">{index}</div>
 
   <div class="card__body">
     <Heading class="card__title">

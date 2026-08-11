@@ -208,7 +208,11 @@ export const EXPERIENCE: Role[] = [
 
 export type Project = {
   slug: string;
-  index: string;
+  /**
+   * No `index` field on purpose. The displayed 01/02/03 is derived from array
+   * position at render time, so adding or reordering a project can never leave
+   * the numbering wrong.
+   */
   name: string;
   period: string;
   role: string;
@@ -227,7 +231,6 @@ export type Project = {
 export const PROJECTS: Project[] = [
   {
     slug: 'zeeberton',
-    index: '01',
     name: 'ZEEberton',
     period: '2026 — Present',
     role: 'Founder',
@@ -239,8 +242,26 @@ export const PROJECTS: Project[] = [
     featured: true,
   },
   {
+    slug: 'rancho-gardabani',
+    name: 'Rancho Gardabani',
+    period: '2026',
+    role: 'Design',
+    blurb:
+      'Brand and site design for a working farm outside Tbilisi. A heritage-first identity built on full-bleed landscape photography, with the whole site running in Georgian, English and Russian.',
+    tags: ['Web design', 'Brand identity', 'Art direction', 'Trilingual'],
+    href: 'https://ranch.ge/',
+  },
+  {
+    slug: 'cic-mission',
+    name: 'CIC Mission Rebranding',
+    period: '2022 — 2023',
+    role: 'Brand & project lead',
+    blurb:
+      'A full rebranding programme delivered across a relocation between two countries — positioning, identity and rollout.',
+    tags: ['Brand strategy', 'Project management'],
+  },
+  {
     slug: 'wireshark-course',
-    index: '02',
     name: 'Wireshark / WCNA Video Course',
     period: '2018',
     role: 'Author & instructor',
@@ -251,7 +272,6 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'ccna-course',
-    index: '03',
     name: 'CCNA 200-125 Hands-On Course',
     period: '2018',
     role: 'Author & instructor',
@@ -259,16 +279,6 @@ export const PROJECTS: Project[] = [
       'A practical, lab-driven CCNA course built around real configuration work rather than exam memorisation. Published free as a public playlist.',
     tags: ['Cisco IOS', 'Routing & switching', 'Lab design'],
     href: 'https://www.youtube.com/playlist?list=PLlE8KNhwt4f4IfeGEfHMzhZngRRxQe974',
-  },
-  {
-    slug: 'cic-mission',
-    index: '04',
-    name: 'CIC Mission Rebranding',
-    period: '2022 — 2023',
-    role: 'Brand & project lead',
-    blurb:
-      'A full rebranding programme delivered across a relocation between two countries — positioning, identity and rollout.',
-    tags: ['Brand strategy', 'Project management'],
   },
 ];
 

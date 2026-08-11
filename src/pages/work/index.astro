@@ -31,21 +31,26 @@ const schema = [
 
 <BaseLayout
   title="Work — Projects by Hirad Fazeli"
-  description="Things Hirad Fazeli has built: ZEEberton, a live map for pet owners; 350 minutes of Wireshark training; a hands-on CCNA course; and a brand rebuild."
+  description="Projects by Hirad Fazeli: ZEEberton, a live map for pet owners; the Rancho Gardabani farm brand; a rebrand; and two network-engineering courses."
   schema={schema}
 >
   <section class="section wrap">
     <p class="label page__eyebrow">Work</p>
     <h1 class="page__title">Things I have built</h1>
     <p class="lede page__lede">
-      A product I run solo, two training courses that are still online, and a rebrand
-      delivered across a move between countries. Four entries, all real.
+      A product I run solo, a farm brand outside Tbilisi, a rebrand delivered across a
+      move between countries, and two training courses that are still online.
     </p>
   </section>
 
   <section class="wrap" aria-label="Project list">
     {PROJECTS.map((project, i) => (
-      <WorkCard project={project} as="h2" delay={Math.min(i, 3) as 0 | 1 | 2 | 3} />
+      <WorkCard
+        project={project}
+        index={String(i + 1).padStart(2, '0')}
+        as="h2"
+        delay={Math.min(i, 3) as 0 | 1 | 2 | 3}
+      />
     ))}
   </section>
 </BaseLayout>
